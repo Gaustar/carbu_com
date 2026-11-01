@@ -202,6 +202,17 @@ class EndroitSensor(_Base, SensorEntity):
     def __init__(self, coordinator):
         super().__init__(coordinator, "endroit", "Meilleur endroit", "mdi:map-marker-star")
 
+    async def async_added_to_hass(self):
+        await super().async_added_to_hass()
+        conf = self.coordinator.conf
+        watched = [*conf.get("stations", []), *([conf["station_passage"]] if conf.get("station_passage") else [])]
+        # les capteurs de prix peuvent se charger après le conseil, puis changer à tout moment
+        self.async_on_remove(async_track_state_change_event(self.hass, watched, self._on_price))
+
+    @callback
+    def _on_price(self, event):
+        self.async_write_ha_state()
+
     @property
     def native_value(self):
         best = (self.coordinator.stations() or [None])[0]
