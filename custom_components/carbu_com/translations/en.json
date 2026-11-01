@@ -2,21 +2,6 @@
     "config": {
         "title": "Carbu.com",
         "step": {
-            "user": {
-                "description": "Setup Carbu.com and Mazout.com sensors.",
-                "data": {
-                    "country": "Country (BE/DE/FR/IT/LU/NL/ES/US)",
-                    "postalcode": "Postal code",
-                    "GEO_API_KEY": "GeoApify API key (adviced)",
-                    "filter": "Supplier brand filter (optional)",
-					"super95": "Super 95 (E10)",
-					"super95_e5": "Super 95 (E5) (only in DE/ES)",
-					"super98": "Super 98 (E5)",
-					"diesel": "Diesel (B7)",
-					"lpg": "LPG",
-                    "logo_with_price": "Logo with price"
-                }
-            },
             "town": {
                 "data": {
                     "town": "Town",
@@ -27,15 +12,47 @@
                 "data": {
                     "town": "Town",
                     "individualstation": "Select an individual gas station",
-					"oilstd": "Mazout Heating Oil standard (50S)",
-					"oilextra": "Mazout Heating Oil extra",
-					"quantity": "Mazout Heating Oil quanitity (liters)"
+                    "oilstd": "Mazout Heating Oil standard (50S)",
+                    "oilextra": "Mazout Heating Oil extra",
+                    "quantity": "Mazout Heating Oil quanitity (liters)"
                 }
             },
             "station": {
                 "description": "Select an individual gas station",
                 "data": {
                     "station": "Gas station"
+                }
+            },
+            "location": {
+                "description": "Setup Carbu.com and Mazout.com sensors.",
+                "data": {
+                    "country": "Country (BE/DE/FR/IT/LU/NL/ES/US)",
+                    "postalcode": "Postal code",
+                    "GEO_API_KEY": "GeoApify API key (adviced)",
+                    "filter": "Supplier brand filter (optional)",
+                    "super95": "Super 95 (E10)",
+                    "super95_e5": "Super 95 (E5) (only in DE/ES)",
+                    "super98": "Super 98 (E5)",
+                    "diesel": "Diesel (B7)",
+                    "lpg": "LPG",
+                    "logo_with_price": "Logo with price"
+                }
+            },
+            "user": {
+                "menu_options": {
+                    "location": "Prices by town or station",
+                    "conseil": "Diesel refuel advice (when and where)"
+                }
+            },
+            "conseil": {
+                "title": "Diesel refuel advice",
+                "description": "Pick the price sensors to compare. Optional: a station you pass regularly (another country, commute…) and, to estimate your next visit, that station's zone and your GPS tracker. The \"when\" forecast only exists for Belgian maximum prices.",
+                "data": {
+                    "stations": "Stations to compare (price sensors)",
+                    "prevision_be": "Forecast Belgian maximum price changes",
+                    "station_passage": "Regularly visited station (optional)",
+                    "zone": "Zone of that station (optional)",
+                    "tracker": "GPS tracker or person (optional)"
                 }
             }
         },
@@ -45,6 +62,9 @@
             "missing postal code": "Please provide a valid postal code",
             "missing data options handler": "Option handler failed",
             "no_valid_settings": "No valid settings check in ha config."
+        },
+        "abort": {
+            "already_configured": "Advice is already configured."
         }
     },
     "options": {
@@ -64,6 +84,16 @@
                     "friendly_name_official_template_choice": "Use official template?",
                     "friendly_name_official_template": "Friendly name sensor Official template (optional)",
                     "logo_with_price": "Logo with price?"
+                }
+            },
+            "init": {
+                "title": "Diesel refuel advice",
+                "data": {
+                    "stations": "Stations to compare (price sensors)",
+                    "prevision_be": "Forecast Belgian maximum price changes",
+                    "station_passage": "Regularly visited station (optional)",
+                    "zone": "Zone of that station (optional)",
+                    "tracker": "GPS tracker or person (optional)"
                 }
             }
         },

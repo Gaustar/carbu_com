@@ -297,6 +297,10 @@ async def async_setup_platform(
 async def async_setup_entry(hass, config_entry, async_add_devices):
     """Setup sensor platform for the ui"""
     _LOGGER.info("async_setup_entry " + NAME)
+    if config_entry.data.get("conseil"):
+        from .conseil import async_setup_sensors
+        await async_setup_sensors(hass, config_entry, async_add_devices)
+        return True
     config = config_entry.data
     coordinator = hass.data[DOMAIN][config_entry.entry_id]
     await dry_setup(hass, config, async_add_devices, coordinator)

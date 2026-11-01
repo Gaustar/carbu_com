@@ -10,6 +10,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import ServiceValidationError
 from homeassistant.helpers.typing import ConfigType
 from .utils import check_settings, FuelType, ComponentSession
+from . import conseil  # noqa: F401  importé ici, hors boucle d'événements (holidays lit des fichiers)
 
 # Removed reading from manifest file
 
@@ -25,6 +26,7 @@ from .utils import check_settings, FuelType, ComponentSession
 DOMAIN =  "carbu_com"
 NAME =  "Carbu.com"
 PLATFORMS = [Platform.SENSOR]
+CONSEIL_PLATFORMS = [Platform.SENSOR, Platform.NUMBER]
 
 STARTUP = """
 -------------------------------------------------------------------
@@ -62,8 +64,12 @@ async def async_update_options(hass: HomeAssistant, config_entry: ConfigEntry):
     await hass.config_entries.async_reload(config_entry.entry_id)
 
 
+def _platforms(config_entry):
+    return CONSEIL_PLATFORMS if config_entry.data.get("conseil") else PLATFORMS
+
+
 async def async_unload_entry(hass: HomeAssistant, config_entry: ConfigEntry):
-    unload_ok = await hass.config_entries.async_unload_platforms(config_entry, PLATFORMS)
+    unload_ok = await hass.config_entries.async_unload_platforms(config_entry, _platforms(config_entry))
     if unload_ok:
         hass.data.get(DOMAIN, {}).pop(config_entry.entry_id, None)
 
@@ -72,6 +78,13 @@ async def async_unload_entry(hass: HomeAssistant, config_entry: ConfigEntry):
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> bool:
     """Set up component as config entry."""
+    if config_entry.data.get("conseil"):
+        from .conseil import async_setup_conseil
+        hass.data.setdefault(DOMAIN, {})[config_entry.entry_id] = await async_setup_conseil(hass, config_entry)
+        await hass.config_entries.async_forward_entry_setups(config_entry, CONSEIL_PLATFORMS)
+        config_entry.async_on_unload(config_entry.add_update_listener(async_update_options))
+        return True
+
     from .sensor import CarbuDataUpdateCoordinator, ComponentData
 
     config = config_entry.data

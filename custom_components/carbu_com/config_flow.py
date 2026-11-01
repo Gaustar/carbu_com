@@ -230,6 +230,26 @@ def create_town_schema():
     return data_schema
 
 
+def conseil_schema(data, country):
+    def default(key):
+        return {"default": data[key]} if data.get(key) else {}
+    return vol.Schema({
+        vol.Required("stations", **default("stations")): selector({"entity": {"integration": DOMAIN, "domain": "sensor", "multiple": True}}),
+        vol.Required("prevision_be", default=data.get("prevision_be", country == "BE")): bool,
+        vol.Optional("station_passage", **default("station_passage")): selector({"entity": {"integration": DOMAIN, "domain": "sensor"}}),
+        vol.Optional("zone", **default("zone")): selector({"entity": {"domain": "zone"}}),
+        vol.Optional("tracker", **default("tracker")): selector({"entity": {"domain": ["device_tracker", "person"]}}),
+    })
+
+
+class ConseilOptionsHandler(config_entries.OptionsFlow):
+    async def async_step_init(self, user_input=None):
+        if user_input is not None:
+            self.hass.config_entries.async_update_entry(self.config_entry, data={"conseil": True, **user_input})
+            return self.async_create_entry(title="", data={})
+        return self.async_show_form(step_id="init", data_schema=conseil_schema(self.config_entry.data, self.hass.config.country))
+
+
 class ComponentFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     """Config flow for component."""
 
@@ -245,7 +265,17 @@ class ComponentFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         """Initialize."""
         self._errors = {}
 
-    async def async_step_user(self, user_input=None):  # pylint: disable=dangerous-default-value
+    async def async_step_user(self, user_input=None):
+        return self.async_show_menu(step_id="user", menu_options=["location", "conseil"])
+
+    async def async_step_conseil(self, user_input=None):
+        if user_input is not None:
+            await self.async_set_unique_id("conseil_plein")
+            self._abort_if_unique_id_configured()
+            return self.async_create_entry(title="Conseil plein diesel", data={"conseil": True, **user_input})
+        return self.async_show_form(step_id="conseil", data_schema=conseil_schema({}, self.hass.config.country))
+
+    async def async_step_location(self, user_input=None):  # pylint: disable=dangerous-default-value
         """Handle a flow initialized by the user."""
 
         if user_input is not None:
@@ -271,7 +301,7 @@ class ComponentFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         """Show the configuration form to edit location data."""
         data_schema = create_schema(user_input, True)
         return self.async_show_form(
-            step_id="user", data_schema=vol.Schema(data_schema), errors=self._errors
+            step_id="location", data_schema=vol.Schema(data_schema), errors=self._errors
         )
     
     def find_town_by_name(self, target_name):
@@ -358,6 +388,8 @@ class ComponentFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     @staticmethod
     def async_get_options_flow(config_entry): 
         """Get the options flow for this handler."""
+        if config_entry.data.get("conseil"):
+            return ConseilOptionsHandler()
         return ComponentOptionsHandler(config_entry)
 
 

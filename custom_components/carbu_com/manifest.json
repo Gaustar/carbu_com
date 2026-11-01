@@ -14,7 +14,11 @@
     "bs4",
     "requests",
     "voluptuous",
-    "ratelimit"
+    "ratelimit",
+    "holidays"
   ],
-  "version": "12.0.3"
+  "version": "13.0.0",
+  "after_dependencies": [
+    "recorder"
+  ]
 }

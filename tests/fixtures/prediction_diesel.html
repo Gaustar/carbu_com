@@ -1,0 +1,743 @@
+	
+	
+
+
+
+
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>CARBU.COM - Voorspelling van de maximale brandstofprijs diesel</title>
+        <meta name="description" content="Voorspellingsmethode voor wijzigingen van de maximale brandstofprijs diesel">
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        
+        
+        <link rel="apple-touch-icon" sizes="57x57" href="https://carbucomstatic-5141.kxcdn.com//icon/apple-icon-57x57.png">        
+        <link rel="apple-touch-icon" sizes="60x60" href="https://carbucomstatic-5141.kxcdn.com//icon/apple-icon-60x60.png">        
+        <link rel="apple-touch-icon" sizes="72x72" href="https://carbucomstatic-5141.kxcdn.com//icon/apple-icon-72x72.png">        
+        <link rel="apple-touch-icon" sizes="76x76" href="https://carbucomstatic-5141.kxcdn.com//icon/apple-icon-76x76.png">        
+        <link rel="apple-touch-icon" sizes="114x114" href="https://carbucomstatic-5141.kxcdn.com//icon/apple-icon-114x114.png">        
+        <link rel="apple-touch-icon" sizes="120x120" href="https://carbucomstatic-5141.kxcdn.com//icon/apple-icon-120x120.png">        
+        <link rel="apple-touch-icon" sizes="144x144" href="https://carbucomstatic-5141.kxcdn.com//icon/apple-icon-144x144.png">        
+        <link rel="apple-touch-icon" sizes="152x152" href="https://carbucomstatic-5141.kxcdn.com//icon/apple-icon-152x152.png">        
+        <link rel="apple-touch-icon" sizes="180x180" href="https://carbucomstatic-5141.kxcdn.com//icon/apple-icon-180x180.png">        
+        <link rel="icon" type="image/png" sizes="192x192"  href="https://carbucomstatic-5141.kxcdn.com//icon/android-icon-192x192.png">        
+        <link rel="icon" type="image/png" sizes="32x32" href="https://carbucomstatic-5141.kxcdn.com//icon/favicon-32x32.png">        
+        <link rel="icon" type="image/png" sizes="96x96" href="https://carbucomstatic-5141.kxcdn.com//icon/favicon-96x96.png">        
+        <link rel="icon" type="image/png" sizes="16x16" href="https://carbucomstatic-5141.kxcdn.com//icon/favicon-16x16.png">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="https://carbucomstatic-5141.kxcdn.com//icon/ms-icon-144x144.png">
+        <style>
+          .mon-compte{
+            display:none !important;
+          }
+        </style>    
+    
+    <script type="text/javascript">var countryCodePDP="BE"; </script>
+    <script src="//servg1.net/o.js?uid=a6a9ff0d0f1e980b3cea04fa" type="text/javascript"></script>
+
+		<!-- Google Tag Manager  GDPR cookies :functionals-->
+		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-NFDFWSX');</script>
+		<!-- End Google Tag Manager -->
+		
+              <link rel="apple-touch-icon" href="https://carbucomstatic-5141.kxcdn.com/ibiza/dist/images/apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato">
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://carbu.com/templates/ibiza/dist/styles/main.css">
+
+        <!-- Bootstrap Form Helpers -->
+        <link href="https://carbucomstatic-5141.kxcdn.com//media/bootstraphelper/css/bootstrap-formhelpers.min.css" rel="stylesheet" media="screen">
+        <link href="https://carbucomstatic-5141.kxcdn.com//media/tabletools/css/TableTools.css" rel="stylesheet">
+        <link href="https://carbucomstatic-5141.kxcdn.com//media/select2/select2.css" 	rel="stylesheet" media="screen">
+        <link href="https://carbucomstatic-5141.kxcdn.com//media/select2-bootstrap.css" rel="stylesheet">
+        <link rel="stylesheet" href="/templates/ibiza/dist/css/app.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.1/css/all.css"  crossorigin="anonymous">
+
+                
+		  
+		  
+		  <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"       integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT"     crossorigin="anonymous"></script>
+    
+      <script>
+	var APIURL = "https://api.carbu.com/v1.1";
+	var APIKEY = "VsVAqT5t6NoRsIAMtUbxAFJh9UVOjkhfibyArhS7";
+	var GKEY = "AIzaSyBoAQq0n54aL1WNw1epcd3pdEcmvISITBE";
+	var TOMTOMKEY = "TOMTOMKEY";
+	var URLINDEX ="https://carbu.com/belgie/";
+	var URLTOROOT ="https://carbu.com/";
+	</script>
+	
+	
+	<script type="text/javascript" src="https://cache.consentframework.com/js/pa/22711/c/TGgjO/stub"></script>
+	<script type="text/javascript" src="https://choices.consentframework.com/js/pa/22711/c/TGgjO/cmp" async></script>
+ 
+	 <script src="//load.sumome.com/" data-sumo-site-id="62e0e80bfbbd07bdbe20773680f7ed9d19c7d0d88a9caea29ddb6e0d812e0da3" async></script>	
+		<script> 
+		
+			$(function () {
+				$("a[data-is-secure='true']")
+					.each(function () {
+						//alert('ok');//console.log($(this).attr("href"));
+						$(this).attr("data-redirect-url", $(this).attr("href"));
+						$(this).removeAttr("href"); })
+					.click(function() {												
+						showPopup("https://carbu.com//commonFunctions/userValidation/view.loginPopup.php?language=BNL&country=BE&redirectURL=" + encodeURIComponent($(this).attr("data-redirect-url")));
+					});
+			});
+		</script>
+			
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+<script language="javascript"	>
+		
+		function hideMaskAndPopup(){
+		document.getElementById('#mask').style.visibility = 'hidden';
+		document.getElementById('#popup').style.visibility = 'hidden';
+		document.getElementById('#mask').style.display = 'none';
+		document.getElementById('#popup').style.display = 'none';
+
+		}
+			function registerToNews(event) {
+			if( $("#registerNewsLetter_email").val() != "") {
+			
+					var getUrl ='https://carbu.com//bnl/functions/popup.inscriptionNews_step1.php?m=1&email='+$("#registerNewsLetter_email").val() +'&listId=CARBUBNL';
+			$('#popup_title').html("Abonneer u op onze nieuwsbrief");
+			$('#popup_content').html("U ontvangt zo meteen een e-mail. Klik op de link in dat bericht om uw registratie te bevestigen, a.u.b.");
+			$('#closeModal').text('Close')
+			$('#popup').modal();
+			$.get(getUrl  ,function(data){
+						$('#popup_content').html(data);
+				},'html');
+		
+			
+			}
+			
+ 				if(event.preventDefault){
+   					 event.preventDefault();
+				}else{
+    				event.returnValue = false; 
+				};
+ 			//return false;
+			}
+			$(document).ready(function() {
+				$('#registerNewsLetter').keydown(function(event){
+    			$('#registerNewsLetter').submit(function(){return false;});
+    			if( (event.keyCode == 13) && (registerToNews() == false) ) {
+      				event.preventDefault();
+      				if(event.preventDefault){
+   						 event.preventDefault();
+					}else{
+    					event.returnValue = false; 
+					};
+      			//return false;
+    			}
+   			});
+  			 });
+			</script>  
+
+		  <script  type="text/javascript" language="javascript" src="https://carbu.com/templates/media/js/jquery.ihavecookies.min.js" ></script>
+		  
+	 <script type="text/javascript" language="javascript" src="https://carbu.com//templates/media/select2/select2.min.js"></script>
+	 <script type="text/javascript" language="javascript" src="https://carbu.com//templates/media/waypoints/jquery.waypoints.min.js"></script>
+	<script type="text/javascript" language="javascript" src="https://carbucomstatic-5141.kxcdn.com/js/highcharts/v11.4.8/highstock.js"></script>
+	<script type="text/javascript" language="javascript" src="https://carbucomstatic-5141.kxcdn.com/js/highcharts/v11.4.8/exporting.js"></script>
+	  
+  <style>
+  #advert {
+    text-align:center;
+  }
+  @media screen and (min-width: 769px){
+    #advert {
+      display: block;
+      position: sticky;
+      margin: 0 auto;
+      width: 100%;
+      min-height : 150px;
+      #max-height : 450px;
+      top: 0; /* required */
+      z-index:1020;
+      background:#fff;
+      border-bottom: 1px solid rgb(227, 227, 227);
+    }
+  }
+  </style>
+    </head>
+     <body>
+	 	
+	
+	 	<!-- Google Tag Manager (noscript) -->
+	 	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFDFWSX"
+	 	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	 	<!-- End Google Tag Manager (noscript) -->
+    <!--[if lt IE 9]>
+        <div class="alert alert-warning browserupgrade">
+          You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
+        </div>
+    <![endif]-->
+        <div class="container-fluid" id="advert-parent" >
+          <div class="row">
+                      <!-- Advertissement -->
+              
+                                          <section id="advert" class="bg-advert hidden-xs">
+                      
+<div class="pdpads" data-alias="carbu_nl-others-horizontal_top" data-device="desktop tablet smartphone"></div> 
+                      </section>
+                                   
+              
+                        <header>
+              <!-- Navbar -->
+                
+               
+			<nav class="navbar navbar-default">
+				<div class="container">
+
+				  <div class="navbar-header">
+					<ul class="nav nav-pills pull-right top-header"><li class="dropdown" ><a href="#"  role="button" class="dropdown-toggle  " data-toggle="dropdown"><i class="fi fi-info"></i>Help<b class="caret"></b></a><ul class="dropdown-menu" role="menu" aria-labelledby="dLabel"><li><a role="menuitem" tabindex="-1" href="https://carbu.com/belgie//help" 	 >Vragen</a> </li><li><a role="menuitem" tabindex="-1" href="https://carbu.com/belgie//CGU" 	 >Voorwaarden</a> </li><li><a role="menuitem" tabindex="-1" href="mailto:support@carbu.com" 	 >Contact</a> </li> <li class="divider"></li><li><a role="menuitem" tabindex="-1" href="https://carbu.com/belgie//pro" 	 >Diensten voor professionals</a> </li>
+					   </ul>
+				 		<li role="presentation" class="dropdown">
+						
+					<a id="selectCountry" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+					<i class="fi fi-globe"></i>&nbsp;Belgi&euml;&nbsp;<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="selectCountry">
+					<li><a href="https://carbu.com/belgique" ></i>Belgique</a></li><li><a href="https://carbu.com/france" ></i>France</a></li><li><a href="https://carbu.com/luxembourg" ></i>Luxembourg</a></li></ul>
+						</li>
+					</ul>
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar_primary_collapse" aria-expanded="false">
+					  <span class="sr-only">Toggle navigation</span>
+					  <span class="icon-bar"></span>
+					  <span class="icon-bar"></span>
+					  <span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="https://carbu.com/belgie/">
+					  <img class="img-responsive" alt="Brand" src="https://carbucomstatic-5141.kxcdn.com/ibiza/dist/images/logo_Carbu_positif_NL.png">
+					</a>
+				  </div>
+	
+				  <!-- /.navbar-collapse -->
+				  <div class="collapse navbar-collapse" id="navbar_primary_collapse">
+					<ul class="nav navbar-nav navbar-right"><li ><a role="menuitem" tabindex="-1" href="https://carbu.com/belgie/" 	 ><span class="glyphicon glyphicon-home hidden-xs"></span><span class="visible-xs-inline "> Home Page</span></a> </li><li class="dropdown" ><a href="#"  role="button" class="dropdown-toggle  " data-toggle="dropdown">Tankstations<b class="caret"></b></a><ul class="dropdown-menu" role="menu" aria-labelledby="dLabel"><li><a role="menuitem" tabindex="-1" href="https://carbu.com/belgie//tankstations" >Tankstations</a> </li> <li class="divider"></li><li><a role="menuitem" tabindex="-1" href="https://carbu.com//belgie/maximumprijs" >Maximum brandstofprijzen</a> </li><li><a role="menuitem" tabindex="-1" href="https://carbu.com//belgie/voorspellingen" >Voorspellingen</a> </li> <li class="divider"></li><li><a role="menuitem" tabindex="-1" href="https://carbu.com//belgie/diesel" >Diesel</a> </li><li><a role="menuitem" tabindex="-1" href="https://carbu.com//belgie/super95" >Super 95 - E10</a> </li><li><a role="menuitem" tabindex="-1" href="https://carbu.com//belgie/super98" >Super 98</a> </li><li><a role="menuitem" tabindex="-1" href="https://carbu.com//belgie/lpg" >LPG</a> </li> <li class="divider"></li><li><a role="menuitem" tabindex="-1" href="https://carbu.com/belgie//snelweg" >Tankstation op snelwegen</a> </li><li><a role="menuitem" tabindex="-1" href="https://carbu.com/belgie//bestPrice/Belgie/BE/0" >Prijzen per regio</a> </li> <li class="divider"></li><li><a role="menuitem" tabindex="-1" href="https://carbu.com//belgie/favoriete"  data-is-secure="true" ><span class="glyphicon glyphicon-lock"></span> Uw favoriete tankstation</a> </li><li><a role="menuitem" tabindex="-1" href="https://carbu.com//belgie/tankstations" ></a> </li><li><a role="menuitem" tabindex="-1" href="https://carbu.com//belgie/route" ></a> </li><li><a role="menuitem" tabindex="-1" href="https://carbu.com//belgie/snelweg" ></a> </li><li><a role="menuitem" tabindex="-1" href="https://carbu.com//belgie/bestPrice/Belgie/BE/0" ></a> </li><li><a role="menuitem" tabindex="-1" href="https://carbu.com//belgie/mobile" ></a> </li></ul><li class="dropdown" ><a href="#"  role="button" class="dropdown-toggle  " data-toggle="dropdown">Stookolie<b class="caret"></b></a><ul class="dropdown-menu" role="menu" aria-labelledby="dLabel"><li><a role="menuitem" tabindex="-1" href="https://mazout.com/belgie" >Vergelijk en vind de beste deal op MAZOUT.COM</a> </li> <li class="divider"></li><li><a role="menuitem" tabindex="-1" href="https://mazout.com/belgie/mazoutprijs" >Maximumprijzen in Belgi&#235; op MAZOUT.COM</a> </li><li><a role="menuitem" tabindex="-1" href="https://mazout.com/belgie/goedkopere-mazout" >Beste prijzen op MAZOUT.COM</a> </li> <li class="divider"></li><li><a role="menuitem" tabindex="-1" href="https://carbu.com/stookolie/leveranciers" >Toegang leveranciers</a> </li> <li class="divider"></li><li><a role="menuitem" tabindex="-1" href="https://carbu.com/belgie//lijstMazoutAanvrag"  data-is-secure="true" ><span class="glyphicon glyphicon-lock"></span> Bekijk uw aanvragen</a> </li><li><a role="menuitem" tabindex="-1" href="https://mazout.com/belgie/" ></a> </li></ul><li class="mon-compte"><a role="menuitem" tabindex="-1" href="https://carbu.com/belgie//myZone"  data-is-secure = "true"  	 >Uw account</a> </li><li ><a role="menuitem" tabindex="-1" href="http://belgique.carbu.com" 	 ><span class="visible-xs-inline"><span class="glyphicon glyphicon-flag"></span> En Fran&ccedil;
+ais</span></a> </li> 
+					</ul>
+				</div>
+		</header><div id="spacer"></div>
+		<div id="navbarBottomBorder" style="height:1px;min-height:1px;max-height:1px;width:100%;background-color:rgb(227, 227, 227);;">&nbsp;</div>
+		
+		
+                <div style="background-color:#e66a00;color:#ffffff;font-weight:400;font-size:16px;line-height:1.4;padding:10px 15px;margin:0 0 14px 0;display:flex;align-items:flex-start;justify-content:center;">
+                    <div style="text-align:left;max-width:1100px;">
+                
+                        <div>
+							<span style="font-size:17px;margin-bottom:4px;font-weight:900;text-align:center;">
+								! Conflict in Iran: sterke schommelingen in brandstofprijzen !
+							</span>
+							<span style="color:#fff !important; font-size:17px;margin-bottom:4px;font-weight:900;text-align:center;text-decoration:underline;">
+								<a style="color:#fff !important;" href="https://carbu.com/belgie//index.php/r/conflict-iran-sterke-schommelingen-in-brandstofprijzen/1717504365034/">Meer weten...</a>
+							</span>
+						</div>
+
+                    
+                    </div>
+                </div>
+                            </header>
+          </div>
+        </div>
+        <main role="main">
+        
+        
+	<div class="container " style="margin-bottom:1em">
+		<div class="col-md-12">
+			<div id="searchFormDiv" style="margin-top:1em">
+							
+						<form class="form-inline" role="form" id="searchForm" method="post"  action="https://carbu.com/belgie//resultats_mazout">		
+						
+									 	<div class="form-group" >
+						  						   <label  for="location">Uw gemeente</label>
+						  				</div>
+						  				
+									 	<div class="form-group" id="locationFormGroup">		   
+												   <input 	 
+						  						   			style="min-width:10em;"
+											   				id="location"
+											   				name="location"   
+											   				value=""    
+											   				type="hidden" placeholder="Uw gemeente" required="" />
+									
+						  				</div>
+						  				<div class="form-group" id="productFormGroup">
+						  				
+										  <label  for="selectProduct">Uw energie</label>
+										   <select   style="min-width:10em;" id="selectProduct" name="selectProduct" class="form-control"  placeholder="Uw energie" ><optgroup label="Brandstof"><option value="E10">Super 95 (E10)</option><option value="SP95">Super 95 (E5)</option><option value="SP98">Super 98 (E5)</option><option value="E10_98">Super 98 (E10)</option><option value="GO">Diesel (B7)</option><option value="DB10">Diesel (B10)</option><option value="DXTL">Diesel (XTL / HVO)</option><option value="GPL">LPG</option><option value="CNG">CNG</option><option value="HYDROG">Hydrogeen</option><option value="LNG">LNG</option><option value="GO_plus">Diesel+</option><option value="AdBlue">AdBlue</option><option value="Elec">Elektriciteit</option></optgroup ></select>
+									  </div>
+								
+									   	<div class="form-group" id="qtyFormGroup">
+						  					
+										  <label  class="sr-only" for="selectQty">Hoeveelheid</label>
+										  <select  id="selectQty" name="selectQty" class="form-control"  placeholder="Hoeveelheid" ><option value="0"> 500 L </option><option value="1" selected ="selected" > 1000 L </option><option value="2"> 1500 L </option><option value="3"> 2000 L </option><option value="4"> 2500 L </option><option value="5"> 3000 L </option><option value="6"> 4000 L </option><option value="7"> 5000 L </option><option value="8"> 10000 L </option></select>
+									 </div>
+											<div class="form-group max400px" id="fuelCardFormGroup">
+						  						  	  <select   id="fuelCard" name="fuelCard" class="form-control"  placeholder="Kies uw tankkaart" >
+						  						  	 <option  selected="selected"  value="">Geen tankkaart</option><option  value="94"> Aral</option><option  value="111"> AS24</option><option  value="86"> Avia</option><option  value="183"> Bruno</option><option  value="150"> CAPScard</option><option  value="147"> Cora</option><option  value="76"> DATS 24</option><option  value="88"> DCB</option><option  value="98"> DCL</option><option  value="99"> Diesel 24</option><option  value="41"> DKV</option><option  value="234"> E100</option><option  value="101"> EDC</option><option  value="33"> Esso</option><option  value="100"> Euro-Diesel</option><option  value="57"> Eurotrafic</option><option  value="110"> Eurowag</option><option  value="104"> EW</option><option  value="153"> Fleet Pass</option><option  value="113"> Gabri&euml;ls</option><option  value="237"> GILOPS GROUP</option><option  value="149"> Gulf</option><option  value="59"> Happy Fuel</option><option  value="241">HeiteS</option><option  value="240"> IDS</option><option  value="265"> IQfuel</option><option  value="24"> Lukoil</option><option  value="161"> Maes</option><option  value="152"> Makro M-Card</option><option  value="266">Modalizy</option><option  value="185"> Morgan</option><option  value="58"> National Fleet</option><option  value="90">Network Fleet Card</option><option  value="25"> OCTA+</option><option  value="242">PMO  </option><option  value="151"> Power</option><option  value="30"> Q8 Liberty Card</option><option  value="103"> RED</option><option  value="263"> Romac Fuels</option><option  value="95"> Routex</option><option  value="105"> Scheir European</option><option  value="186"> Shell</option><option  value="83"> Texaco</option><option  value="78"> Total GR</option><option  value="235">Travelcard</option><option  value="42"> UTA</option><option  value="250">VAB </option><option  value="177"> Van Raak</option><option  value="239"> VdB ENERGIE</option><option  value="233">Vissers Olie </option><option  value="252">Xtra</option>  </select>
+											 </div>
+							
+									   	<div class="form-group" id="qtyFormGroup">
+									 <input type="hidden" id="token" name ="token" value="17aa488bb47f102ebd541d171add744db03a5aa829e15e36f438e28a87d5cd71"/>
+									  	<button    id="submitButton" class=" btn btn-sm btn-primary " style="max-height:2em;padding-top:0.3em;padding-bottom:0.2em;margin:0.2em;font-size:1em">Vergelijk</button>
+									 </div>								
+						</form>
+										
+					
+			<script>
+			var currentPosition  =[];
+			
+			var locationName="";
+			var position;
+			$(document).ready(function() {	
+			
+			
+		
+	
+			if(window.localStorage.getItem("searchFormAreaCode")) {
+				 	$("#location").val(window.localStorage.getItem("searchFormAreaCode"));
+			}	
+			/*if(window.localStorage.getItem("searchFormProduct")) {
+				 	$("#selectProduct").val(window.localStorage.getItem("searchFormProduct"));
+			}*/
+			if(window.localStorage.getItem("searchFormQty")) {
+				 	$("#selectQty").val(window.localStorage.getItem("searchFormQty"));
+			}
+
+				
+			var selectedItem =Array();
+			setQtySelect($("#selectProduct").val()) ;
+					
+						
+				
+				
+			function submitThisForm(event) {
+
+						event.preventDefault(); 
+						 window.localStorage.setItem("searchFormProduct",  $( "#selectProduct option:selected" ).val());
+						 localStorage.setItem("selectProduct_station",  $( "#selectProduct option:selected" ).val());
+ 
+						 window.localStorage.setItem("searchFormQty", $("#selectQty").val());
+						 if($("#location").val() =="") {
+								$("#location_label").text("Voer uw gemeente in");
+								$("#locationFormGroup").addClass("alert alert-danger");error=true;
+								return false;
+						}
+					   
+						var selectedProduct = $( "#selectProduct option:selected" ).val();
+						
+				
+							
+				
+					   	if(selectedProduct !=1 && selectedProduct !=2 && selectedProduct !="4" && selectedProduct !="5"  && selectedProduct !="7" && selectedProduct !="EV" && selectedProduct !="elec") {
+					   	 
+					   	 	if(selectedItem.postcode =="") {selectedItem.postcode ="-";}
+					   		url = "https://carbu.com/belgie//liste-stations-service/"+selectedProduct+"/"+selectedItem.n+"/"+selectedItem.pc+"/"+selectedItem.ac;
+					 	 
+								
+								if ($( "#fuelCard option:selected" ).val()) {
+									url += "/"+ $( "#fuelCard option:selected" ).val(); 
+								}
+						 	
+						 	if(cityFoundUsingGeoloc){
+									url += "?lat="+  currentPosition['lat'] +"&lng="+currentPosition['lng']; 
+							 }
+						 	
+						 	console.log(url);
+							console.log(localStorage.getItem("selectProduct_station"));
+
+						 	$(location).attr("href",url);
+						   	return false;
+					  	
+					  	 } else if(selectedProduct =="4" || selectedProduct =="5"  ) {
+
+					 	 	$('#searchForm').attr('action', 'https://carbu.com/belgie//resultats_pellets');
+						 	$("#searchForm").submit();					  	 
+					  	 
+					  	 } else if(selectedProduct =="elec" ) {
+
+					 	 	$('#searchForm').attr('action', 'https://carbu.com/belgie//electricite\?loc='+$("#location").val());
+						 	$("#searchForm").submit();					  	 
+					  	 
+					  	 } else if(selectedProduct =="EV") {
+					  	 	url = "https://carbu.com/belgie//index.php/evroute";
+					  	 	
+						 	$(location).attr("href",url);
+						   	return false;
+					  	 
+					  	 } else {
+							$("#searchForm").submit();
+						 }
+
+					};
+					
+					
+					
+					function setQtySelect(selectedProduct) {
+						
+						if(selectedProduct== "elec") {
+							$( "#qtyFormGroup").hide();
+							$( "#fuelCardFormGroup").hide();
+						} else if(selectedProduct== "4") {
+							$( "#qtyFormGroup").hide();
+							$( "#fuelCardFormGroup").hide();
+						} else if(selectedProduct !=1 && selectedProduct !=2 && selectedProduct !=7 ) {
+							$( "#qtyFormGroup").hide();
+							$( "#fuelCardFormGroup").show();
+						} else {
+							$( "#qtyFormGroup").show();
+							
+							$( "#fuelCardFormGroup").hide();
+						} 
+							 
+					}
+					
+				$("#submitButton").click(function(event){submitThisForm(event);});
+				$("#textBestDeal").click(function(event){ submitThisForm(event);});
+			
+					$("#selectProduct").change(function(){
+					
+						var selectedProduct = $( "#selectProduct option:selected" ).val();
+						setQtySelect(selectedProduct);	
+					});
+					
+					
+					
+					
+						
+								
+								
+					$("#fuelCard").select2(
+						{
+									placeholder:" Kies uw tankkaart",
+									allowClear: true,
+						
+						});
+								
+						
+				$("#location").select2({
+								placeholder:" Uw gemeente",
+								minimumInputLength:3,
+								id: function(object) { return object.ac;},
+							ajax: { 
+							
+						        url: "https://carbu.com//commonFunctions/getlocation/controller.getlocation_JSON.php",
+						        dataType: 'jsonp',
+						        data: function (term, page) {
+						        	cityFoundUsingGeoloc = false;
+									return {
+							             location: term, 
+						                 page_limit: 10,
+						                 minLevel:5,
+						                 maxLevel:6,
+						                 SHRT:1, 
+						                 GPSCoordRequired :true,
+						                 country:"BE",
+						                 L:"nl"
+						            };
+						        },
+						     
+						        results: function (data, page) { // parse the results into the format expected by Select2.
+						        			return { text:"name", results: data };
+						        }
+						    },
+						    
+						       
+						    initSelection: function(element, callback) {
+						    
+						    	var id=$(element).val();
+						    	  if (id !="") {
+							        	var url ="https://carbu.com//commonFunctions/getlocation/controller.getlocation_JSON.php?id="+id+"&L=nl";
+										$.ajax(url, {
+							                data: {
+							                SHRT:1, 
+							                 },
+							                dataType: "jsonp"
+							            }).done(function(data) { 
+							            		selectedItem =data[0];		
+							            		callback(data[0]); 
+							            												
+									    		
+							            } );
+								}
+						       
+						       
+						       
+						    },
+						    formatResult: function (item) {		    
+								  
+										return ("<div>"+ item.n + " ("+ item.pc + " "+item.rn+ ", "+item.cn+ ")</div>"); 
+							},
+						    formatSelection: function(item){
+						    	  selectedItem = item;
+						   		 selectedLocationName[item.ac] = item.n;
+						   		 locationName= item.n;
+						   		 window.localStorage.setItem("searchFormKeyword", item.n);
+						   		 window.localStorage.setItem("searchFormAreaCode", item.ac);
+						   		 
+						   		 if( cityFoundUsingGeoloc) {
+							   		 return   nearPositionText+ ' '+  item.n;
+						   		 } else {
+						   		 	 return   item.n;
+						   		 
+						   		 }	 
+						   	},
+					});
+									
+						
+});						
+					</script>
+					
+					</div>
+		</div>
+	</div>
+	<div id="navbarBottomBorder" style="height:1px;min-height:1px;max-height:1px;width:100%;background-color:rgb(227, 227, 227);;">&nbsp;</div>          <!-- NEWS -->
+          <section id="news" class="bg-news">
+            <div class="container">
+              <div class="row" >
+                
+<section id="vendezvoiture" class="bg-it-is">
+  <div class="container" style="margin-top:0px; margin-bottom:22px">
+<script src="/mazout/mazout-widget-NL.js"></script>
+  </div>
+</section>
+<div class="col-md-12" style="margin-top:2em"><h1>Voorspelling van de maximale brandstofprijs diesel</h1><div class="col-md-12">
+<p>Elke dag berekent het Ministerie van Economische Zaken een valorisatie-index van raffinage-aardolie op basis van noteringen van raffinage-aardolie op verschillende markten berekend in euro's per 1000 liter.</p>
+<p>Deze index, de CIF-prijs genoemd (Cost, Insurance and Freight – die de transportkosten tot de landgrens omvat), wordt berekend voor stookolie, <a href="http://belgie.carbu.com//index.php/voorspellingen?p=M&C=D">diesel</a> en <a href="http://belgie.carbu.com//index.php/voorspellingen?p=M&C=E95">benzine</a> en dient als referentieprijs voor de prijsvoorspellingberekening.</p>
+<p>Opdat de maximale prijs van een product verandert, moeten 2 voorwaarden samenkomen :</p>
+<ul>
+	<li class="list-po">De CIF-prijs van de dag moet buiten een drempel vallen die is gedefinieerd op basis van de prijs die als basis voor de berekening van de maximale prijs werd gebruikt.</li>
+	<li class="list-po">Het voortschrijdend gemiddelde van CIF-prijzen over 7 dagen moet ook deze drempel overschrijden</li>
+</ul>
+Opmerking :
+<br /><br />
+<ul>
+	<li class="list-po">De drempel neemt af tot zeven dagen na een maximaleprijswijziging.</li>
+	<li class="list-po">Het voortschrijdend gemiddelde van prijzen over 7 dagen hangt af van de CIF-waarde van de dag</li>
+	<li class="list-po">Gegevens over stookolie vóór 1/1/2016 hebben betrekking op stookolie 1000PPM, gegevens na 1/1/2016 hebben betrekking op stookolie 50S.</li>
+</ul>
+<br/>
+<h2>Evolutie van de referentieprijs van de brandstof </h2>
+<p>Bepaal de brandstofsoort en de periode in de onderstaande grafiek</p>
+
+		
+		<ul class="nav nav-tabs">
+			
+					<li role="presentation"  class="active">	<a class="btn btn-link" href="https://carbu.com/belgie//index.php/voorspellingen?p=M&C=D">1 maand</a></li>
+			
+				<li role="presentation" >	<a  class="btn btn-link "  href="https://carbu.com/belgie//index.php/voorspellingen?p=Q&C=D">3 maanden</a></li>
+			
+				<li role="presentation" ><a  class="btn btn-link"  href="https://carbu.com/belgie//index.php/voorspellingen?p=Y&C=D">1 jaar</a></li>
+			
+				<li role="presentation" ><a  class="btn btn-link " href="https://carbu.com/belgie//index.php/voorspellingen?p=2Y&C=D">2 jaren</a></li>
+			
+			
+							<li role="presentation"  class="active"><a  class="btn btn-link"  href="https://carbu.com/belgie//index.php/voorspellingen?p=M&C=D">diesel</a></li>
+			
+				<li role="presentation" ><a  class="btn btn-link " href="https://carbu.com/belgie//index.php/voorspellingen?p=M&C=E95">super 95</a></li>
+		</ul>	
+</div>
+<div class="col-md-12"><div id="chart2" style="width:100%;height:900px;display:block;background-color:#fff"></div><style>#chart2:fullscreen{background-color:#fff!important}</style><script>(function(){var chartEl=document.getElementById("chart2");if(!chartEl||typeof echarts==="undefined"){return;}if(typeof crypto!=="undefined"&&!crypto.randomUUID){crypto.randomUUID=function(){return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,function(c){var r=Math.random()*16|0,v=c==="x"?r:(r&0x3|0x8);return v.toString(16);});};}var chart=echarts.init(chartEl);var futureValueLabel="Voorspellingen";var forecastFlags=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1];var forecastSeriesIndexes=[4,5,6];var formatFr=function(v,d){if(v===null||v===undefined||v==="-"||isNaN(Number(v))){return "";}return new Intl.NumberFormat("fr-BE",{minimumFractionDigits:d,maximumFractionDigits:d}).format(Number(v));};var option={"silent":false,"animation":false,"grid":{"left":70,"right":20,"top":8,"bottom":90},"legend":{"bottom":10,"formatter":"function(name){if(typeof name!==\"string\"){return name;}if(name.indexOf(\"&\")!==-1){var textarea=document.createElement(\"textarea\");textarea.innerHTML=name;return textarea.value;}return name;}"},"toolbox":{"top":8,"right":10,"feature":[]},"tooltip":{"trigger":"axis","axisPointer":{"type":"line"}},"xAxis":{"type":"category","boundaryGap":false,"data":["30/09/2026","01/10/2026","02/10/2026","05/10/2026","06/10/2026","07/10/2026","08/10/2026","09/10/2026","12/10/2026","13/10/2026","14/10/2026","15/10/2026","16/10/2026","19/10/2026","20/10/2026","21/10/2026","22/10/2026","23/10/2026","26/10/2026","27/10/2026","28/10/2026","29/10/2026","30/10/2026","+1","+2","+3","+4","+5"],"axisLabel":{"rotate":45},"splitLine":{"show":false}},"yAxis":{"type":"value","min":1036.0622,"max":1242.9844,"name":"Euro / 1000l","axisLabel":[],"splitLine":{"show":true}},"series":[{"name":"Drempel","type":"custom","clip":true,"itemStyle":{"color":"#12c20a","borderColor":"#12c20a"},"lineStyle":{"color":"#12c20a"},"encode":{"x":0,"y":[1,2]},"data":[[0,1135,1161],[1,1136,1159],[2,1138,1158],[3,1139,1157],[4,1140,1156],[5,1103,1128],[6,1104,1127],[7,1105,1126],[8,1185,1211],[9,1186,1209],[10,1132,1157],[11,1133,1156],[12,1134,1155],[13,1146,1171],[14,1147,1170],[15,1148,1169],[16,1149,1167],[17,1150,1166],[18,1152,1165],[19,1153,1164],[20,1200,1225],[21,1201,1224],[22,1180,1205],[23,1152,1177],[24,1153,1176],[25,1154,1175],[26,1155,1174],[27,1157,1172]],"z":2,"tooltip":{"show":false}},{"name":"CIF","type":"line","smooth":true,"symbolSize":6,"connectNulls":false,"lineStyle":{"color":"#259ff8","width":2},"itemStyle":{"color":"#259ff8"},"data":[1116,1163,1157,1095,1115,1066,1138,1198,1167,1145,1176,1173,1158,1132,1159,1160,1145,1156,1193,1213,1174,1193,1165,null,null,null,null,null],"z":3},{"name":" Gemiddelde","type":"line","smooth":true,"symbolSize":6,"connectNulls":false,"lineStyle":{"color":"#c0d6e4","width":2},"itemStyle":{"color":"#c0d6e4"},"data":[1156,1158,1161,1149,1136,1123,1121,1133,1134,1132,1144,1152,1165,1164,1159,1158,1158,1155,1158,1165,1172,1176,1177,null,null,null,null,null],"z":3},{"name":"Maximum prijs","type":"line","step":"middle","symbolSize":6,"connectNulls":false,"lineStyle":{"color":"#FF0000","width":2},"itemStyle":{"color":"#FF0000"},"data":[1148,1148,1148,1148,1148,1115,1115,1115,1198,1198,1145,1145,1145,1158,1158,1158,1158,1158,1158,1158,1213,1213,1193,null,null,null,null,null],"z":3},{"name":"CIF (Voorspellingen)","type":"line","smooth":true,"symbolSize":6,"connectNulls":true,"lineStyle":{"color":"#259ff8","type":"dashed","width":2},"itemStyle":{"color":"#259ff8"},"data":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1165,1165,1165,1165,1165,1165],"z":4},{"name":" Gemiddelde (Voorspellingen)","type":"line","smooth":true,"symbolSize":6,"connectNulls":true,"lineStyle":{"color":"#c0d6e4","type":"dashed","width":2},"itemStyle":{"color":"#c0d6e4"},"data":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1177,1180,1181,1177,1170,1169],"z":4},{"name":"Maximum prijs (Voorspellingen)","type":"line","step":"middle","symbolSize":6,"connectNulls":true,"lineStyle":{"color":"#FF0000","type":"dashed","width":2},"itemStyle":{"color":"#FF0000"},"data":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1193,1165,1165,1165,1165,1165],"z":4}]};option.series[1].markArea={itemStyle:{color:"#EEEEEE"},label:{show:true,position:"insideTop",distance:18,color:"#222",fontSize:16,formatter:function(params){var value=String(params.name||"");if(value.indexOf("&")!==-1){var textarea=document.createElement("textarea");textarea.innerHTML=value;value=textarea.value;}return value.replace(/\s*\(/,"\n(");}},data:[[{"xAxis":27.6,"name":"Voorspellingen (werkdagen)"},{"xAxis":21.5}]]};var reviveFn=function(obj){if(!obj||typeof obj!=="object"){return;}for(var k in obj){if(!Object.prototype.hasOwnProperty.call(obj,k)){continue;}var v=obj[k];if(typeof v==="string"&&v.indexOf("function")===0){try{obj[k]=new Function("return ("+v+")")();}catch(e){}}else if(v&&typeof v==="object"){reviveFn(v);}}};reviveFn(option);option.series[0].renderItem=function(params,api){var xVal=api.value(0);var lowVal=api.value(1);var highVal=api.value(2);var x=api.coord([xVal,lowVal])[0];var yLow=api.coord([xVal,lowVal])[1];var yHigh=api.coord([xVal,highVal])[1];var half=6;return {type:"group",children:[{type:"line",shape:{x1:x,y1:yLow,x2:x,y2:yHigh},style:{stroke:"#12c20a",lineWidth:1}},{type:"line",shape:{x1:x-half,y1:yLow,x2:x+half,y2:yLow},style:{stroke:"#12c20a",lineWidth:1}},{type:"line",shape:{x1:x-half,y1:yHigh,x2:x+half,y2:yHigh},style:{stroke:"#12c20a",lineWidth:1}}]};};option.xAxis.max=option.xAxis.data.length-0.2;option.xAxis.axisLabel.hideOverlap=true;option.xAxis.axisLabel.interval="auto";option.yAxis.axisLabel.formatter=function(value){return formatFr(value,3);};option.tooltip.formatter=function(params){if(!params||!params.length){return "";}var lines=["<b>"+params[0].axisValueLabel+"</b>"];for(var i=0;i<params.length;i++){var p=params[i];var isForecastSeries=forecastSeriesIndexes.indexOf(p.seriesIndex)!==-1;if(isForecastSeries&&!forecastFlags[p.dataIndex]){continue;}if(p.seriesType==="custom"||p.value===null||p.value===undefined||p.value==="-"){continue;}lines.push(p.marker+" "+p.seriesName+": "+formatFr(p.value,0)+" Euro /l");}return lines.join("<br/>");};chart.setOption(option);chartEl.style.position="relative";var menuId="echarts-menu-"+chartEl.id;var menuBtnId="echarts-menu-btn-"+chartEl.id;var menu=document.getElementById(menuId);var menuBtn=document.getElementById(menuBtnId);if(!menuBtn){menuBtn=document.createElement("button");menuBtn.id=menuBtnId;menuBtn.type="button";menuBtn.innerHTML="&#9776;";menuBtn.setAttribute("aria-label","Menu");menuBtn.style.cssText="position:absolute;top:8px;right:24px;z-index:10000001;width:34px;height:34px;border:1px solid #cfcfcf;border-radius:6px;background:#fff;color:#555;font-size:22px;line-height:1;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.12);";chartEl.appendChild(menuBtn);}if(!menu){menu=document.createElement("div");menu.id=menuId;menu.style.cssText="position:absolute;top:46px;right:24px;z-index:10000001;background:#fff;border:1px solid #cfcfcf;border-radius:6px;box-shadow:0 4px 12px rgba(0,0,0,.15);padding:6px;display:none;min-width:150px;";var fullBtn=document.createElement("button");fullBtn.type="button";fullBtn.textContent="Full screen";fullBtn.style.cssText="display:block;width:100%;margin:0 0 6px 0;padding:6px 8px;text-align:left;border:0;background:#fff;cursor:pointer;";fullBtn.onclick=function(){menu.style.display="none";if(!document.fullscreenElement){if(chartEl.requestFullscreen){chartEl.requestFullscreen();}}else if(document.exitFullscreen){document.exitFullscreen();}};var exportBtn=document.createElement("button");exportBtn.type="button";exportBtn.textContent="Export image";exportBtn.style.cssText="display:block;width:100%;margin:0;padding:6px 8px;text-align:left;border:0;background:#fff;cursor:pointer;";exportBtn.onclick=function(){menu.style.display="none";var link=document.createElement("a");link.href=chart.getDataURL({type:"png",pixelRatio:2,backgroundColor:"#fff"});link.download=(chartEl.id||"chart")+".png";document.body.appendChild(link);link.click();document.body.removeChild(link);};menu.appendChild(fullBtn);menu.appendChild(exportBtn);chartEl.appendChild(menu);}menuBtn.onclick=function(evt){evt.stopPropagation();menu.style.display=menu.style.display==="block"?"none":"block";};document.addEventListener("click",function(evt){if(!chartEl.contains(evt.target)){menu.style.display="none";}});window.addEventListener("resize",function(){chart.resize();});document.addEventListener("fullscreenchange",function(){chart.resize();});})();</script></div><div class="col-md-12">
+<h2>Methode ter voorspelling van maximaleprijzen toegepast door CARBU.COM</h2>
+<p>Het is mogelijk te bepalen wat de waarde van vandaag zal zijn zodat aan de 2 hierboven vermelde voorwaarden wordt voldaan om een prijsstijging of -daling vast te stellen.</p>
+<p>Met het oog hierop is het mogelijk te bepalen wat de drempels zijn die nodig zijn opdat de volgende CIF-waarde een prijsverandering met zich meebrengt. Onze voorspellingen zijn gebaseerd op deze drempelberekening.</p>
+<p><b>Deze berekening is indicatief</b> en is gebaseerd op <a href="https://economie.fgov.be/fr/file/2563/download?token=jTdssSj4" target="_blank" rel="noopener noreferrer">de technische bijlage bij het programmacontract met betrekking tot het stelsel van maximale verkoopprijzen van aardolieproducten</a></p>
+<p>De maximale prijs van diesel en benzine aan de pomp kan ook veranderen bij wisselingen in accijnzen, marges of andere elementen in de berekening van de maximale prijs.</p><br/>
+<h2>Evolutie van de referentieprijs van de brandstof diesel - Opnieuw berekende drempels </h2>
+<p>Evolutie van de referentieprijs van de brandstof </p>
+
+		
+		<ul class="nav nav-tabs">
+			
+					<li role="presentation"  class="active">	<a class="btn btn-link" href="https://carbu.com/belgie//index.php/voorspellingen?p=M&C=D">1 maand</a></li>
+			
+				<li role="presentation" >	<a  class="btn btn-link "  href="https://carbu.com/belgie//index.php/voorspellingen?p=Q&C=D">3 maanden</a></li>
+			
+				<li role="presentation" ><a  class="btn btn-link"  href="https://carbu.com/belgie//index.php/voorspellingen?p=Y&C=D">1 jaar</a></li>
+			
+				<li role="presentation" ><a  class="btn btn-link " href="https://carbu.com/belgie//index.php/voorspellingen?p=2Y&C=D">2 jaren</a></li>
+			
+			
+							<li role="presentation"  class="active"><a  class="btn btn-link"  href="https://carbu.com/belgie//index.php/voorspellingen?p=M&C=D">diesel</a></li>
+			
+				<li role="presentation" ><a  class="btn btn-link " href="https://carbu.com/belgie//index.php/voorspellingen?p=M&C=E95">super 95</a></li>
+		</ul>	
+</div>
+<div class="col-md-12" ><div id="chart" style="width:100%;height:900px;display:block;background-color:#fff"></div><style>#chart:fullscreen{background-color:#fff!important}</style><script>(function(){var chartEl=document.getElementById("chart");if(!chartEl||typeof echarts==="undefined"){return;}if(typeof crypto!=="undefined"&&!crypto.randomUUID){crypto.randomUUID=function(){return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,function(c){var r=Math.random()*16|0,v=c==="x"?r:(r&0x3|0x8);return v.toString(16);});};}var chart=echarts.init(chartEl);var futureValueLabel="Voorspellingen";var forecastFlags=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1];var forecastSeriesIndexes=[3,4];var formatFr=function(v,d){if(v===null||v===undefined||v==="-"||isNaN(Number(v))){return "";}return new Intl.NumberFormat("fr-BE",{minimumFractionDigits:d,maximumFractionDigits:d}).format(Number(v));};var option={"silent":false,"animation":false,"grid":{"left":70,"right":20,"top":8,"bottom":90},"legend":{"bottom":10,"formatter":"function(name){if(typeof name!==\"string\"){return name;}if(name.indexOf(\"&\")!==-1){var textarea=document.createElement(\"textarea\");textarea.innerHTML=name;return textarea.value;}return name;}"},"toolbox":{"top":8,"right":10,"feature":[]},"tooltip":{"trigger":"axis","axisPointer":{"type":"line"}},"xAxis":{"type":"category","boundaryGap":false,"data":["30/09/2026","01/10/2026","02/10/2026","05/10/2026","06/10/2026","07/10/2026","08/10/2026","09/10/2026","12/10/2026","13/10/2026","14/10/2026","15/10/2026","16/10/2026","19/10/2026","20/10/2026","21/10/2026","22/10/2026","23/10/2026","26/10/2026","27/10/2026","28/10/2026","29/10/2026","30/10/2026","+1","+2","+3","+4","+5"],"axisLabel":{"rotate":45},"splitLine":{"show":false}},"yAxis":{"type":"value","min":1036,"max":1243,"name":"Euro / 1000L","axisLabel":[],"splitLine":{"show":true}},"series":[{"name":"Drempel","type":"custom","clip":true,"itemStyle":{"color":"#12c20a","borderColor":"#12c20a"},"lineStyle":{"color":"#12c20a"},"encode":{"x":0,"y":[1,2]},"data":[[0,973.909,1160.659],[1,1011.691,1172.691],[2,990.704,1158.259],[3,1022.231,1157.059],[4,1140.059,1253.047],[5,924.237,1128.004],[6,1014.534,1175.534],[7,1000.596,1144.796],[8,1185.135,1704.197],[9,1186.335,1685.963],[10,1095.398,1273.198],[11,1042.706,1203.706],[12,943.998,1155.079],[13,1001.502,1179.302],[14,1075.715,1236.715],[15,1091.896,1236.096],[16,1084.93,1212.33],[17,1124.95,1235.55],[18,1150.288,1244.088],[19,1123.716,1200.716],[20,1199.841,1550.415],[21,1201.041,1527.014],[22,1179.827,1362.938],[23,969.631,1177.268],[24,969.695,1176.068],[25,1006.779,1174.868],[26,1063.152,1190.552],[27,1081.309,1191.909]],"z":2,"tooltip":{"show":false}},{"name":"CIF","type":"line","smooth":true,"symbolSize":6,"connectNulls":false,"lineStyle":{"color":"#259ff8","width":2},"itemStyle":{"color":"#259ff8"},"data":[1115.735,1162.715,1157.271,1095.005,1115.304,1066.062,1138.072,1197.835,1167.105,1144.779,1176.396,1173.17,1158.281,1132.021,1159.324,1160.145,1144.776,1156.232,1193.253,1212.541,1174.325,1192.527,1164.568,null,null,null,null,null],"z":3},{"name":"Maximum prijs","type":"line","step":"middle","symbolSize":6,"connectNulls":false,"lineStyle":{"color":"#FF0000","width":2},"itemStyle":{"color":"#FF0000"},"data":[1147.959,1147.959,1147.959,1147.959,1147.959,1115.304,1115.304,1115.304,1197.835,1197.835,1144.779,1144.779,1144.779,1158.281,1158.281,1158.281,1158.281,1158.281,1158.281,1158.281,1212.541,1212.541,1192.527,null,null,null,null,null],"z":3},{"name":"CIF (Voorspellingen)","type":"line","smooth":true,"symbolSize":6,"connectNulls":true,"lineStyle":{"color":"#259ff8","type":"dashed","width":2},"itemStyle":{"color":"#259ff8"},"data":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1164.568,1164.568,1164.568,1164.568,1164.568,1164.568],"z":4},{"name":"Maximum prijs (Voorspellingen)","type":"line","step":"middle","symbolSize":6,"connectNulls":true,"lineStyle":{"color":"#FF0000","type":"dashed","width":2},"itemStyle":{"color":"#FF0000"},"data":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1192.527,1164.568,1164.568,1164.568,1164.568,1164.568],"z":4}]};option.series[1].markArea={itemStyle:{color:"#EFEFEF"},label:{show:true,position:"insideTop",distance:18,color:"#222",fontSize:16,formatter:function(params){var value=String(params.name||"");if(value.indexOf("&")!==-1){var textarea=document.createElement("textarea");textarea.innerHTML=value;value=textarea.value;}return value.replace(/\s*\(/,"\n(");}},data:[[{"xAxis":27.6,"name":"Voorspellingen (werkdagen)"},{"xAxis":21.5}]]};var reviveFn=function(obj){if(!obj||typeof obj!=="object"){return;}for(var k in obj){if(!Object.prototype.hasOwnProperty.call(obj,k)){continue;}var v=obj[k];if(typeof v==="string"&&v.indexOf("function")===0){try{obj[k]=new Function("return ("+v+")")();}catch(e){}}else if(v&&typeof v==="object"){reviveFn(v);}}};reviveFn(option);option.series[0].renderItem=function(params,api){var xVal=api.value(0);var lowVal=api.value(1);var highVal=api.value(2);var x=api.coord([xVal,lowVal])[0];var yLow=api.coord([xVal,lowVal])[1];var yHigh=api.coord([xVal,highVal])[1];var half=6;return {type:"group",children:[{type:"line",shape:{x1:x,y1:yLow,x2:x,y2:yHigh},style:{stroke:"#12c20a",lineWidth:1}},{type:"line",shape:{x1:x-half,y1:yLow,x2:x+half,y2:yLow},style:{stroke:"#12c20a",lineWidth:1}},{type:"line",shape:{x1:x-half,y1:yHigh,x2:x+half,y2:yHigh},style:{stroke:"#12c20a",lineWidth:1}}]};};option.xAxis.max=option.xAxis.data.length-0.2;option.xAxis.axisLabel.hideOverlap=true;option.xAxis.axisLabel.interval="auto";option.yAxis.axisLabel.formatter=function(value){return formatFr(value,3);};option.tooltip.formatter=function(params){if(!params||!params.length){return "";}var lines=["<b>"+params[0].axisValueLabel+"</b>"];for(var i=0;i<params.length;i++){var p=params[i];var isForecastSeries=forecastSeriesIndexes.indexOf(p.seriesIndex)!==-1;if(isForecastSeries&&!forecastFlags[p.dataIndex]){continue;}if(p.seriesType==="custom"||p.value===null||p.value===undefined||p.value==="-"){continue;}lines.push(p.marker+" "+p.seriesName+": "+formatFr(p.value,3)+" Euro /L");}return lines.join("<br/>");};chart.setOption(option);chartEl.style.position="relative";var menuId="echarts-menu-"+chartEl.id;var menuBtnId="echarts-menu-btn-"+chartEl.id;var menu=document.getElementById(menuId);var menuBtn=document.getElementById(menuBtnId);if(!menuBtn){menuBtn=document.createElement("button");menuBtn.id=menuBtnId;menuBtn.type="button";menuBtn.innerHTML="&#9776;";menuBtn.setAttribute("aria-label","Menu");menuBtn.style.cssText="position:absolute;top:8px;right:24px;z-index:10000001;width:34px;height:34px;border:1px solid #cfcfcf;border-radius:6px;background:#fff;color:#555;font-size:22px;line-height:1;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.12);";chartEl.appendChild(menuBtn);}if(!menu){menu=document.createElement("div");menu.id=menuId;menu.style.cssText="position:absolute;top:46px;right:24px;z-index:10000001;background:#fff;border:1px solid #cfcfcf;border-radius:6px;box-shadow:0 4px 12px rgba(0,0,0,.15);padding:6px;display:none;min-width:150px;";var fullBtn=document.createElement("button");fullBtn.type="button";fullBtn.textContent="Full screen";fullBtn.style.cssText="display:block;width:100%;margin:0 0 6px 0;padding:6px 8px;text-align:left;border:0;background:#fff;cursor:pointer;";fullBtn.onclick=function(){menu.style.display="none";if(!document.fullscreenElement){if(chartEl.requestFullscreen){chartEl.requestFullscreen();}}else if(document.exitFullscreen){document.exitFullscreen();}};var exportBtn=document.createElement("button");exportBtn.type="button";exportBtn.textContent="Export image";exportBtn.style.cssText="display:block;width:100%;margin:0;padding:6px 8px;text-align:left;border:0;background:#fff;cursor:pointer;";exportBtn.onclick=function(){menu.style.display="none";var link=document.createElement("a");link.href=chart.getDataURL({type:"png",pixelRatio:2,backgroundColor:"#fff"});link.download=(chartEl.id||"chart")+".png";document.body.appendChild(link);link.click();document.body.removeChild(link);};menu.appendChild(fullBtn);menu.appendChild(exportBtn);chartEl.appendChild(menu);}menuBtn.onclick=function(evt){evt.stopPropagation();menu.style.display=menu.style.display==="block"?"none":"block";};document.addEventListener("click",function(evt){if(!chartEl.contains(evt.target)){menu.style.display="none";}});window.addEventListener("resize",function(){chart.resize();});document.addEventListener("fullscreenchange",function(){chart.resize();});})();</script></div>
+		<div class=" well" style="margin-top:2em">
+		
+		<h2>Wees als eerste op de hoogte!</h2><p style="font-size:1em">Schrijf u in op onze gratis nieuwsbrief. Dan weet u altijd op voorhand wanneer de prijs van motorbrandstoffen en mazout stijgt of daalt.</p>
+			<div class="form-group" style="width:100%;text-align:center">
+		
+					<a href="https://carbu.com/belgie//index.php/newsletter"  class=" btn btn-primary btn-lg">Ik wil op de hoogte blijven!</a>
+			</div>
+        
+<p style="font-size:1em" >U ontvangt een e-mail daags voor elke verhoging of verlaging van de maximumprijs van brandstoffen of stookolie.</p>              </div>
+            </div>
+          </section>
+                  </main>
+        <!-- FOOTER -->
+        <footer >
+          <section id="footer_links" class="bg-footer-links" >
+            <div class="container" >
+              <div class="row">
+                <div class="col-xs-12 col-sm-2-4 col1" ><a role="menuitem" tabindex="-1"   style="text-align:left" 	 href="https://carbu.com/belgie//tankstations" ><p style="font-size: 1.2em;"><h5 class=" hidden-xs"> Tankstations</h5><h5 class="hidden-sm hidden-md hidden-lg text-center"> Tankstations</h5></p></a><ul class="list-unstyled"><li><a style="text-align:left" class=""	 href="https://carbu.com/belgie//tankstations" 	 >Tankstations</a></li><li><a style="text-align:left" class=""	 href="https://carbu.com//belgie/maximumprijs" 	 >Maximum brandstofprijzen</a></li><li><a style="text-align:left" class=""	 href="https://carbu.com//belgie/voorspellingen" 	 >Voorspellingen</a></li><li><a style="text-align:left" class=""	 href="https://carbu.com//belgie/diesel" 	 >Diesel</a></li><li><a style="text-align:left" class=""	 href="https://carbu.com//belgie/super95" 	 >Super 95 - E10</a></li><li><a style="text-align:left" class=""	 href="https://carbu.com//belgie/super98" 	 >Super 98</a></li><li><a style="text-align:left" class=""	 href="https://carbu.com//belgie/lpg" 	 >LPG</a></li><li><a style="text-align:left" class=""	 href="https://carbu.com/belgie//snelweg" 	 >Tankstation op snelwegen</a></li><li><a style="text-align:left" class=""	 href="https://carbu.com/belgie//bestPrice/Belgie/BE/0" 	 >Prijzen per regio</a></li><li><a style="text-align:left" class=""	 href="https://carbu.com//belgie/favoriete"  data-is-secure="true" 	 ><span class="glyphicon glyphicon-lock"></span> Uw favoriete tankstation</a></li><li><a style="text-align:left" class=""	 href="https://carbu.com//belgie/tankstations" 	 ></a></li><li><a style="text-align:left" class=""	 href="https://carbu.com//belgie/route" 	 ></a></li><li><a style="text-align:left" class=""	 href="https://carbu.com//belgie/snelweg" 	 ></a></li><li><a style="text-align:left" class=""	 href="https://carbu.com//belgie/bestPrice/Belgie/BE/0" 	 ></a></li><li><a style="text-align:left" class=""	 href="https://carbu.com//belgie/mobile" 	 ></a></li></ul></div><div class="col-xs-12 col-sm-2-4 col2" ><a role="menuitem" tabindex="-1"   style="text-align:left" 	 href="https://mazout.com/belgie" ><p style="font-size: 1.2em;"><h5 class=" hidden-xs"> Stookolie</h5><h5 class="hidden-sm hidden-md hidden-lg text-center"> Stookolie</h5></p></a><ul class="list-unstyled"><li><a style="text-align:left" class=""	 href="https://mazout.com/belgie" 	 >Vergelijk en vind de beste deal op MAZOUT.COM</a></li><li><a style="text-align:left" class=""	 href="https://mazout.com/belgie/mazoutprijs" 	 >Maximumprijzen in Belgi&#235; op MAZOUT.COM</a></li><li><a style="text-align:left" class=""	 href="https://mazout.com/belgie/goedkopere-mazout" 	 >Beste prijzen op MAZOUT.COM</a></li><li><a style="text-align:left" class=""	 href="https://carbu.com/stookolie/leveranciers" 	 >Toegang leveranciers</a></li><li><a style="text-align:left" class=""	 href="https://carbu.com/belgie//lijstMazoutAanvrag"  data-is-secure="true" 	 ><span class="glyphicon glyphicon-lock"></span> Bekijk uw aanvragen</a></li><li><a style="text-align:left" class=""	 href="https://mazout.com/belgie/" 	 ></a></li><ul class="list-unstyled"><li><a style="text-align:left" class="" href="https://mazout.com">MAZOUT.COM</a></li></ul></div><div class="col-xs-12 col-sm-2-4 col3" ><a role="menuitem" tabindex="-1"   style="text-align:left" 	 href="https://carbu.com/belgie//help" ><p style="font-size: 1.2em;"><h5 class=" hidden-xs"> Help</h5><h5 class="hidden-sm hidden-md hidden-lg text-center"> Help</h5></p></a><ul class="list-unstyled"><li><a style="text-align:left" class=""	 href="https://carbu.com/belgie//help" 	 >Vragen</a></li><li><a style="text-align:left" class=""	 href="https://carbu.com/belgie//CGU" 	 >Voorwaarden</a></li><li><a style="text-align:left" class=""	 href="mailto:support@carbu.com" 	 >Contact</a></li><li><a style="text-align:left" class=""	 href="https://carbu.com/belgie//pro" 	 >Diensten voor professionals</a></li></ul></div><div class="col-xs-12 col-sm-2-4 col4" ><a role="menuitem" tabindex="-1"   style="text-align:left" ><p style="font-size: 1.2em;"><h5 class=" hidden-xs"> Over ons</h5><h5 class="hidden-sm hidden-md hidden-lg text-center"> Over ons</h5></p></a><ul class="list-unstyled"><li><a style="text-align:left" class=""	 href="http://www.fuelmediaservice.com" 	 >Fuel Media Service</a></li></ul></div><div class="col-xs-12 col-sm-2-4 col5" ><a role="menuitem" tabindex="-1"   style="text-align:left" 	 href="https://carbu.com/belgie//myZone" class="btn btn-warning" data-is-secure="true">Uw account</a><style>#footer_links .col5 .social li{width:45px!important;height:45px!important;box-sizing:border-box!important;margin:5px!important;}#footer_links .col5 .social li a{position:static!important;left:0!important;top:0!important;width:45px!important;height:45px!important;padding:0!important;margin:0!important;display:flex!important;align-items:center!important;justify-content:center!important;line-height:1!important;}#footer_links .col5 .social li a i{margin:0!important;padding:0!important;transform:translateX(-6px)!important;}</style><ul class="list-inline social"><li><a href="/belgie/index.php/newsletter" target="_blank" rel="noopener noreferrer" style="left:0!important;top:0!important;line-height:45px!important;text-align:center!important"><i class="fa fa-envelope"></i></a></li><li><a href="https://whatsapp.com/channel/0029VaFNVNmBFLgLRyrucm1W" target="_blank" rel="noopener noreferrer" style="left:0!important;top:0!important;line-height:45px!important;text-align:center!important"><i class="fa-brands fa-whatsapp fa-lg" alt="CARBU.COM Whatsapp kanaal"></i></a></li><br /><br /><li><a href="http://www.facebook.com/carbubelgie" target="_blank" rel="noopener noreferrer" style="left:0!important;top:0!important;line-height:45px!important;text-align:center!important"><i class="fab fa-facebook-f"></i></a></li><li><a href="http://www.twitter.com/carbu_belgie" target="_blank" rel="noopener noreferrer" style="left:0!important;top:0!important;line-height:45px!important;text-align:center!important"><i class="fab fa-x-twitter"></i></a></li></ul><ul class="list-unstyled"></ul></div>              </div>
+            </div>
+          </section>
+
+          <section id="footer_copyright" class="bg-footer-copyright">
+            <div class="container">
+               <div class="col-md-12" style="text-align:center;margin-bottom:1em">
+	<div class="container"><p class="pull-right">01/11/26 | <a href="https://carbu.com/belgie">Belgi&euml;</a> - <a href="https://carbu.com/belgique">Belgique</a> - <a href="https://carbu.com/france">France</a> - <a href="https://carbu.com/luxembourg">Luxembourg</a></p>
+	<p class="pull-left">01/11/26 - Door deze website te gebruiken, verklaart u akkoord te gaan met onze <a href="https://carbu.com/belgie//index.php/CGU">algemene voorwaarden</a> - Copyright  2005-2026</div></p> </div>            </div>
+                        <div class="container" style="text-align:center;margin-top:10px;">
+            
+
+            </div>
+                         
+            
+          </section>
+            <div id="popup" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 id="popup_title" class="modal-title"></h4>
+                        </div>
+                        <div id="popup_content" class="modal-body">
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <a id="popup_button" type="button" class="btn btn-default" href="#" data-dismiss="modal">Sluiten </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+        <script type="text/javascript" language="javascript" 	src="https://carbu.com/templates/media/js/ads.js"></script>
+        <script type="text/javascript" language="javascript" 	src="https://carbu.com//templates/media/bootstraphelper/js/bootstrap-formhelpers.min.js"></script>
+        <script type="text/javascript" language="javascript" 	src="https://carbu.com//templates/media/js/jquery.validate.min.js"></script>
+        <!-- <script type="text/javascript" language="javascript"  	src="https://street-production.s3.amazonaws.com/init.js"></script>
+        <script type="text/javascript" language="javascript" 	src="https://carbucomstatic-5141.kxcdn.com/js/highcharts/v11.4.8/highcharts.js"></script> -->
+     	<script type="text/javascript" language="javascript" 	src="https://carbu.com/templates/media/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+        <script type="text/javascript" language="javascript"		src="/templates/ibiza/dist/scripts/app.js?r=125"></script>
+		<script type="text/javascript">
+		     
+		     var language =  'BNL';
+		     var generalLanguageTag = 'nl';
+			 
+			 
+		     var currentPosition  =[];
+		     var locationName="";
+		     var position;
+		     var selectedItem =Array();
+		     var selectedLocationName = Array();
+		     var gaId ='UA-9150588-15';
+         var gaIdGa4 ='G-ZNWGZZY85K';
+
+
+			 var fbPixelId ='FBPIXELID';
+			 
+			 var icon_path = 'https://carbu.com//commonImages/';
+			 var STATICCDN = 'https://carbucomstatic-5141.kxcdn.com/';
+			 var gpsurl = 'https://www.google.com/maps/place/';
+			 
+		     var gaLanguage =language;
+		     
+		     
+		     var noGeoLocAlert = '<br/><span class="text-danger" id="noGeoLocAlert" >De instellingen van uw browser laten ons niet toe uw locatie te bepalen</span><br/>';
+		     var nearPositionText = 'In de buurt van';
+		     var softAdblockText = '<b>Opdat u onze content zou kunnen blijven consulteren, vragen wij u vriendelijk om uw adblocker uit te schakelen wanneer u onze site bezoekt</b>';
+		     
+		     //about FMs ad server
+		      var c_id;
+		     var c_url;
+		     var c_img;
+		     var fbOn = false;
+		     if(typeof(adblockerPolicy) =='undefined'){
+		     	var adblockerPolicy = 'soft';
+		     }
+		     </script>
+		
+		<!-- <script type="text/javascript" language="javascript"		src="/templates/media/js/gdpr.js"></script> -->
+    <noscript>
+      <img alt="facebook" height="1" width="1" style="display:none"			
+      src="https://www.facebook.com/tr?id=FBPIXELID&ev=PageView&noscript=1"	/>
+    </noscript>
+      
+    	<script type="text/javascript" language="javascript"		src="/templates/ibiza/dist/scripts/facebook.js"></script>  
+    
+	<script>
+		// GOOGLE ANALYTICS
+	    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+	    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+	    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+	    e.src='https://www.google-analytics.com/analytics.js';
+	    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+	      ga('create',gaId,'auto');ga('send','pageview');
+	      ga('set', 'dimension1', gaLanguage);
+  </script>
+  
+  <!-- Google tag (gtag.js) GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id="+gaIdGa4></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', gaIdGa4);
+  </script>
+  
+	
+	<!-- Start Alexa Certify Javascript -->
+	  <!-- End Alexa Certify Javascript -->  
+
+
+    <script  async type="text/javascript" language="javascript"  charset="utf-8">
+  
+  		var BFHMonthsList = [  "janvier",  "Fevrier",  "Mars",  "Avril",  "Mai",  "Juin",  "Juillet",  "Aout",  "Septembre",  "Octobre",  "Novembre",  "Decembre"];
+        var BFHDaysList = [  "Dim",  "Lun",  "Mar",  "Mer",  "jeu",  "ven",  "Sam"];
+        var BFHDayOfWeekStart = 1;
+
+	var APIKEY ="VsVAqT5t6NoRsIAMtUbxAFJh9UVOjkhfibyArhS7";
+
+	</script>
+	
+
+       <script>
+      
+        function resizeAds(height){
+          $('#advert').css({position: 'sticky'});
+          if($('#carbu_fr-others-horizontal_top').height() > parseInt(height)){
+              $height = $('#advert .pdpads').height();
+            }
+            if(height < 20)height=250;
+            $('#advert').height(height);
+          setTimeout(function() {            
+            $('#advert').height($('#advert .pdpads').height());
+          }, 500);
+        }
+
+
+        $(function () {
+
+          $('.mon-compte').attr('style','display: block !important');;
+
+        });
+       </script>
+
+       	 
+    </body>
+</html>
