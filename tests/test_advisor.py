@@ -61,7 +61,7 @@ def test_near_change_and_far_changes():
     assert advisor.decide(mon, 2.0, None, far_down, {"cinq_jours": 2.0})["verdict"] == "Pas de prévision fiable"
     assert advisor.decide(mon, 2.0, None, far_down, None)["verdict"] == "Pas de prévision fiable"
     v = advisor.decide(mon, 2.0, None, far_down, {"cinq_jours": -3.1})
-    assert v["verdict"] == "Baisse possible jeudi 5/11, à confirmer" and "−3,1 %" not in v["raison"], v
+    assert v["verdict"] == "Baisse possible jeudi 5/11, à confirmer" and v["raison"].startswith("carbu.com prévoit") and v["raison"].endswith(").") and "−3,1 %" not in v["raison"], v
     assert advisor.decide(mon, 2.0)["verdict"] == "Pas de prévision disponible"
 
 

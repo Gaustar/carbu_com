@@ -17,7 +17,7 @@ from . import advisor
 from .const import DOMAIN
 
 _LOGGER = logging.getLogger(DOMAIN)
-USER_AGENT = "HomeAssistant-carbu_com/13.1 (+https://github.com/Gaustar/carbu_com)"
+USER_AGENT = "HomeAssistant-carbu_com/13.1.1 (+https://github.com/Gaustar/carbu_com)"
 # Le SPF Économie publie entre 10 h et 12 h les jours ouvrables ; 0 h 05 pour le prix du jour.
 REFRESH_HOURS = (0, 11, 13, 16)
 
@@ -295,6 +295,10 @@ class BarometreSensor(_Base, SensorEntity):
             texte = f"{b['declenche'].capitalize()} déclenchée : nouveau prix le jour ouvrable suivant"
         elif est and est["sens"]:
             texte = f"{est['sens'].capitalize()} probable {advisor.day_name(est['changement'], self.coordinator.data['today'])}"
+        elif b["ecart_baisse"] < 0:
+            texte = "Cotation sous le seuil de baisse, la moyenne 7 jours doit suivre"
+        elif b["ecart_hausse"] < 0:
+            texte = "Cotation au-dessus du seuil de hausse, la moyenne 7 jours doit suivre"
         elif b["ecart_baisse"] <= b["ecart_hausse"]:
             texte = f"Stable, encore −{b['ecart_baisse']:.1f} c/L avant une baisse".replace(".", ",")
         else:

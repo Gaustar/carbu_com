@@ -239,6 +239,10 @@ def _cents(v):
     return f"{abs(v):.1f}".replace(".", ",")
 
 
+def _signed(v):
+    return f"{v:+.1f}".replace(".", ",")
+
+
 def day_name(day, today):
     if day == today + timedelta(days=1):
         return "demain"
@@ -291,7 +295,7 @@ def decide(today, current, energia=None, prediction=None, trend=None, barometer=
         if trend and trend["cinq_jours"] < 0:
             return {**info(f"Baisse possible {when}, à confirmer", "prévision lointaine", price,
                             f"carbu.com prévoit −{_cents(delta)} c/L {when} et le gasoil baisse "
-                            f"({trend['cinq_jours']:+.1f} % sur 5 séances).".replace(".", ",")),
+                            f"({_signed(trend['cinq_jours'])} % sur 5 séances)."),
                     "variation": delta, "date": step["date"]}
         return info("Pas de prévision fiable", "incertaine", current,
                      f"carbu.com prévoit une baisse {when}, mais le gasoil ne baisse pas : "
