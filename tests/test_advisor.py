@@ -93,6 +93,62 @@ def test_market_trend_and_bad_pages():
         raise AssertionError(f"{fn.__name__} aurait dû échouer")
 
 
+BARO = advisor.parse_barometer(fixture("barometre_diesel.html"))
+HO, FX = advisor.parse_yahoo(fixture("ho.json")), advisor.parse_yahoo(fixture("eurusd.json"))
+
+
+def _outlook(day):
+    return advisor.barometer_outlook([r for r in BARO if r["date"] <= day], HO, FX)
+
+
+def test_parse_barometer():
+    assert len(BARO) == 263 and BARO[-1]["date"] == date(2026, 11, 19)
+    assert BARO[-1] == {"date": date(2026, 11, 19), "cif": 1017, "moyenne": 1054, "bas": 1057, "haut": 1075, "base": 1066}
+    o = advisor.barometer_outlook(BARO)  # 19/11 : cotation et moyenne sous le seuil -> baisse décidée
+    assert o["declenche"] == "baisse" and o["estimation"] is None and o["ecart_baisse"] == -4.8
+    try:
+        advisor.parse_barometer("<html></html>")
+    except ValueError:
+        return
+    raise AssertionError("parse_barometer aurait dû échouer")
+
+
+def test_barometer_estimates_next_announcement():
+    # 24/08 : le gasoil perd 5 % ; la baisse s'est bien déclenchée le 25/08 (nouveau prix le 26/08)
+    o = _outlook(date(2026, 8, 24))
+    e = o["estimation"]
+    assert o["declenche"] is None and e["annonce"] == date(2026, 8, 25) and e["sens"] == "baisse", e
+    assert e["changement"] == date(2026, 8, 26) and -9 < e["variation"] < -6
+    v = advisor.decide(date(2026, 8, 24), 2.0, barometer=o)
+    assert v["verdict"] == "Baisse probable mercredi 26/8, à confirmer" and v["certitude"] == "probable (marché)", v
+    assert "Attends" not in v["verdict"] and v["date"] == date(2026, 8, 26)
+    # le jour de l'annonce, passé 13 h sans annonce officielle, l'estimation ne vaut plus rien
+    assert advisor.decide(date(2026, 8, 25), 2.0, barometer=o, after_noon=True)["certitude"] == "inconnue"
+
+
+def test_official_and_carbu_forecast_beat_barometer():
+    o = _outlook(date(2026, 8, 24))
+    near = {"date": date(2026, 8, 24), "max": 1000.0, "forecast": [{"date": date(2026, 8, 25), "max": 1020.0}]}
+    assert advisor.decide(date(2026, 8, 24), 2.0, prediction=near, barometer=o)["certitude"] == "prévision"
+
+
+def test_stable_says_how_far_thresholds_are():
+    o = _outlook(date(2026, 10, 20))
+    assert o["estimation"]["sens"] is None and o["ecart_baisse"] > 0 and o["ecart_hausse"] > 0
+    flat = {"date": date(2026, 10, 20), "max": 1000.0, "forecast": []}
+    v = advisor.decide(date(2026, 10, 20), 2.0, prediction=flat, barometer=o)
+    assert v["verdict"] == "Prix stable prévu" and "pour déclencher une baisse" in v["raison"], v
+
+
+def test_futures_curve():
+    assert advisor.futures_symbols(date(2026, 11, 20))[0] == ("2026-12", "HOZ26.NYM")
+    assert advisor.futures_symbols(date(2026, 11, 20))[-1] == ("2027-06", "HOM27.NYM")
+    assert advisor.futures_symbols(date(2026, 12, 15))[0] == ("2027-01", "HOF27.NYM")
+    c = advisor.futures_curve([("2026-12", 4.0), ("2027-01", None), ("2027-06", 3.48)])
+    assert c["variation_pct"] == -13.0 and "une baisse" in c["lecture"] and "-13,0 %" in c["lecture"], c
+    assert advisor.futures_curve([("2026-12", 4.0)]) is None
+
+
 def test_next_visit():
     assert advisor.next_visit([date(2026, 10, 24)], 10) == date(2026, 11, 3)
     assert advisor.next_visit([], 10) is None

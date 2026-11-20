@@ -10,17 +10,19 @@ HACS → ⋮ → Dépôts personnalisés → `https://github.com/Gaustar/carbu_c
 
 Les entrées et capteurs déjà créés avec la version d'origine sont conservés (même domaine `carbu_com`).
 
-## Conseil plein diesel (v13)
+## Conseil plein diesel (v13.1)
 
 Ajouter l'intégration Carbu.com → **Conseil plein diesel**. Elle crée :
 
-- **Conseil** : « Attends demain : −3,4 c/L », « Fais le plein avant mardi 3/11 : +1,9 c/L », « Hausse possible… », « Pas de prévision fiable » ou « Prix stable prévu », avec la certitude (officiel, prévision, prévision lointaine, incertaine), la raison et les prévisions jour par jour.
+- **Conseil** : « Attends demain : −3,4 c/L », « Fais le plein avant mardi 3/11 : +1,9 c/L », « Hausse possible… », « Pas de prévision fiable » « Baisse probable samedi 21/11, à confirmer » ou « Prix stable prévu », avec la certitude (officiel, prévision, probable (marché), prévision lointaine, incertaine), la raison et les prévisions jour par jour.
 - **Meilleur endroit** : la station la moins chère parmi les capteurs choisis. En option, l'écart avec une station où vous passez régulièrement (autre pays, trajet domicile-travail…), l'économie sur un plein et le prochain passage estimé (zone + traceur GPS).
 - **Tendance gasoil** : variation du gasoil (ULSD NYMEX converti en €) sur la dernière séance et sur 5 séances, à titre indicatif.
+- **Baromètre** (Belgique) : position de la cotation du jour entre les deux seuils du contrat-programme (0 % = seuil de baisse, 100 % = seuil de hausse), l'écart en c/L avant chaque seuil, l'estimation de la prochaine annonce et l'historique de 30 jours (cotation, moyenne 7 jours, seuils, prix de base, en €/1000 L HTVA) pour un graphique.
+- **Courbe gasoil** : ce que les contrats à terme ULSD des 7 prochains mois annoncent (variation en %, prix par mois), pour la tendance des semaines à venir.
 - Réglages : litres par plein, jours entre deux passages.
 
 **Le « quand » ne fonctionne que pour la Belgique** (prix maximum officiels). Ailleurs, le conseil affiche « Pas de prévision possible » et garde le meilleur endroit et la tendance.
 
-Comment il décide : l'annonce officielle du lendemain (Energia) prime ; sinon la prévision de carbu.com au prochain jour où le prix peut changer (juste 4 fois sur 5 sur un an de données) ; au-delà, jamais « attends », et une baisse lointaine n'est signalée que si le gasoil baisse aussi. Les petits ajustements trimestriels (1er janvier, avril, juillet, octobre, moins de 1 c/L) ne sont pas prévisibles. Rafraîchissement : 0 h 05, puis 11 h 15, 13 h 15 et 16 h 15 les jours ouvrables belges.
+Comment il décide : l'annonce officielle du lendemain (Energia) prime ; sinon la prévision de carbu.com au prochain jour où le prix peut changer (juste 4 fois sur 5 sur un an de données) ; sinon l'estimation du baromètre : le prix change quand la cotation du jour **et** sa moyenne sur 7 jours sortent du même seuil, et la cotation du jour suit la séance du gasoil de la veille (corrélation 0,68), ce qui annonce un changement environ un jour plus tôt (juste 7 fois sur 10 sur un an, jamais dans le mauvais sens, montant à 1,4 c/L près) ; au-delà, jamais « attends », et une baisse lointaine n'est signalée que si le gasoil baisse aussi. Les petits ajustements trimestriels (1er janvier, avril, juillet, octobre, moins de 1 c/L) ne sont pas prévisibles. Rafraîchissement : 0 h 05, puis 11 h 15, 13 h 15 et 16 h 15 les jours ouvrables belges.
 
 Détails et chiffres de vérification : `docs/superpowers/specs/2026-11-01-conseil-plein-design.md`. Tests : `python3 tests/test_advisor.py`.

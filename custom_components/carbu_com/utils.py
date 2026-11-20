@@ -10,6 +10,7 @@ from datetime import date, datetime, timedelta
 import urllib.parse
 from enum import Enum
 from .spain_gas_stations_api import GasStationApi
+from . import advisor
 # from spain_gas_stations_api import GasStationApi
 import urllib3
 from ratelimit import limits, sleep_and_retry
@@ -185,6 +186,18 @@ def _fuel_prediction_from_echarts_option(option, script_text):
 
 
 def _fuel_prediction_from_echarts(response_text):
+    # Base = palier déjà en vigueur aujourd'hui : sinon un changement déjà appliqué (le +1 d'hier) compte comme à venir.
+    try:
+        prediction = advisor.parse_prediction(response_text)
+        if prediction["forecast"]:
+            today, base = date.today(), prediction["max"]
+            for step in prediction["forecast"]:
+                if step["date"] <= today:
+                    base = step["max"]
+            target = prediction["forecast"][-1]
+            return [100 * (target["max"] - base) / base, target["date"].strftime(_DATE_FORMAT)]
+    except (TypeError, ValueError, KeyError, IndexError) as err:
+        _LOGGER.debug(f"Prediction via advisor failed, falling back: {err}")
     soup = BeautifulSoup(response_text, 'html.parser')
     for script in soup.find_all('script'):
         script_text = script.string or script.get_text()

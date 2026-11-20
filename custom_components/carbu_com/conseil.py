@@ -5,7 +5,7 @@ from functools import partial
 
 import requests
 from homeassistant.components.number import NumberMode, RestoreNumber
-from homeassistant.components.sensor import SensorEntity
+from homeassistant.components.sensor import SensorEntity, SensorStateClass
 from homeassistant.core import callback
 from homeassistant.helpers.entity import DeviceInfo
 from homeassistant.helpers.event import async_track_state_change_event, async_track_time_change
@@ -17,7 +17,7 @@ from . import advisor
 from .const import DOMAIN
 
 _LOGGER = logging.getLogger(DOMAIN)
-USER_AGENT = "HomeAssistant-carbu_com/13.0 (+https://github.com/Gaustar/carbu_com)"
+USER_AGENT = "HomeAssistant-carbu_com/13.1 (+https://github.com/Gaustar/carbu_com)"
 # Le SPF Économie publie entre 10 h et 12 h les jours ouvrables ; 0 h 05 pour le prix du jour.
 REFRESH_HOURS = (0, 11, 13, 16)
 
@@ -40,7 +40,8 @@ def _fetch_all(belgium):
     if belgium:
         jobs.update(prediction=(advisor.PREDICTION_URL, advisor.parse_prediction),
                     maximum=(advisor.MAXIMUM_URL, advisor.parse_current_maximum),
-                    energia=(advisor.ENERGIA_URL, advisor.parse_energia))
+                    energia=(advisor.ENERGIA_URL, advisor.parse_energia),
+                    barometer=(advisor.BAROMETER_URL, advisor.parse_barometer))
     out = {}
     for key, (url, parse) in jobs.items():
         try:
@@ -48,6 +49,13 @@ def _fetch_all(belgium):
         except Exception as err:
             _LOGGER.warning("Conseil plein : source %s indisponible (%s)", key, err)
             out[key] = None
+    points = []
+    for month, symbol in advisor.futures_symbols(dt_util.now().date()):
+        try:
+            points.append((month, advisor.parse_yahoo(_get(advisor.YAHOO_URL.format(symbol)))[-1][1]))
+        except Exception as err:  # contrat pas encore coté ou Yahoo indisponible
+            _LOGGER.debug("Conseil plein : contrat %s indisponible (%s)", symbol, err)
+    out["curve"] = advisor.futures_curve(points)
     return out
 
 
@@ -116,16 +124,21 @@ class ConseilCoordinator(DataUpdateCoordinator):
         if not belgium:
             verdict = advisor.info("Pas de prévision possible", "non prise en charge", None,
                                     "La prévision du « quand » n'existe que pour les prix maximum belges.")
-            return {"today": today, "current": None, "energia": None, "prediction": None, "trend": trend, "verdict": verdict}
+            return {"today": today, "current": None, "energia": None, "prediction": None, "trend": trend,
+                    "barometer": None, "history": [], "curve": src["curve"], "verdict": verdict}
+        rows = src["barometer"]
+        barometer = advisor.barometer_outlook(rows, src["ho"], src["fx"]) if rows else None
         energia, current = src["energia"], src["maximum"]
         if energia and energia["valid_from"] <= today:
             current = energia["price"]  # prix officiel en vigueur, même si carbu.com n'est pas encore à jour
         if current is None:
             verdict = advisor.info("Pas de prévision disponible", "inconnue", None, "Prix maximum du jour introuvable.")
         else:
-            verdict = advisor.decide(today, current, energia, src["prediction"], trend)
+            # le SPF publie entre 10 h et 12 h : passé 13 h, une annonce attendue aujourd'hui qui n'est pas venue est caduque
+            verdict = advisor.decide(today, current, energia, src["prediction"], trend, barometer, dt_util.now().hour >= 13)
         return {"today": today, "current": current, "energia": energia, "prediction": src["prediction"],
-                "trend": trend, "verdict": verdict}
+                "trend": trend, "barometer": barometer, "history": (rows or [])[-30:], "curve": src["curve"],
+                "verdict": verdict}
 
     def stations(self):
         rows, seen = [], set()
@@ -259,6 +272,64 @@ class TendanceSensor(_Base, SensorEntity):
                 "source": "ULSD NYMEX en €, indicatif"} if t else {}
 
 
+class BarometreSensor(_Base, SensorEntity):
+    """Position de la cotation entre les seuils : 0 % = seuil de baisse, 100 % = seuil de hausse."""
+    _attr_native_unit_of_measurement = "%"
+    _attr_state_class = SensorStateClass.MEASUREMENT
+
+    def __init__(self, coordinator):
+        super().__init__(coordinator, "barometre", "Baromètre", "mdi:gauge")
+
+    @property
+    def native_value(self):
+        b = self.coordinator.data["barometer"]
+        return b["position"] if b else None
+
+    @property
+    def extra_state_attributes(self):
+        b = self.coordinator.data["barometer"]
+        if not b:
+            return {}
+        est = b["estimation"]
+        if b["declenche"]:
+            texte = f"{b['declenche'].capitalize()} déclenchée : nouveau prix le jour ouvrable suivant"
+        elif est and est["sens"]:
+            texte = f"{est['sens'].capitalize()} probable {advisor.day_name(est['changement'], self.coordinator.data['today'])}"
+        elif b["ecart_baisse"] <= b["ecart_hausse"]:
+            texte = f"Stable, encore −{b['ecart_baisse']:.1f} c/L avant une baisse".replace(".", ",")
+        else:
+            texte = f"Stable, encore +{b['ecart_hausse']:.1f} c/L avant une hausse".replace(".", ",")
+        attrs = {
+            "texte": texte, "cotation_du": b["date"].isoformat(), "cif": b["cif"], "moyenne_7j": b["moyenne"],
+            "seuil_bas": b["bas"], "seuil_haut": b["haut"], "prix_base": b["base"], "unite": "€/1000 L HTVA",
+            "ecart_baisse_c_l": b["ecart_baisse"], "ecart_hausse_c_l": b["ecart_hausse"], "declenche": b["declenche"],
+            "historique": [{"date": r["date"].isoformat(), "cif": r["cif"], "moyenne": r["moyenne"], "bas": r["bas"],
+                            "haut": r["haut"], "base": r["base"]} for r in self.coordinator.data["history"]],
+        }
+        if est:
+            attrs["estimation"] = {"sens": est["sens"], "changement": est["changement"].isoformat(),
+                                   "variation_c_l": est["variation"], "cif": est["cif"], "moyenne_7j": est["moyenne"],
+                                   "seance_du": est["seance_du"].isoformat(), "marche_pct": est["marche_pct"]}
+        return attrs
+
+
+class CourbeSensor(_Base, SensorEntity):
+    _attr_native_unit_of_measurement = "%"
+
+    def __init__(self, coordinator):
+        super().__init__(coordinator, "courbe", "Courbe gasoil", "mdi:chart-bell-curve-cumulative")
+
+    @property
+    def native_value(self):
+        c = self.coordinator.data["curve"]
+        return c["variation_pct"] if c else None
+
+    @property
+    def extra_state_attributes(self):
+        c = self.coordinator.data["curve"]
+        return {"lecture": c["lecture"], "mois": c["mois"], "source": "ULSD NYMEX, $/gallon, indicatif"} if c else {}
+
+
 class ReglageNumber(_Base, RestoreNumber):
     _attr_mode = NumberMode.BOX
 
@@ -286,7 +357,7 @@ class ReglageNumber(_Base, RestoreNumber):
 
 async def async_setup_sensors(hass, entry, async_add_entities):
     c = hass.data[DOMAIN][entry.entry_id]
-    async_add_entities([ConseilSensor(c), EndroitSensor(c), TendanceSensor(c)])
+    async_add_entities([ConseilSensor(c), EndroitSensor(c), TendanceSensor(c), BarometreSensor(c), CourbeSensor(c)])
 
 
 async def async_setup_numbers(hass, entry, async_add_entities):
