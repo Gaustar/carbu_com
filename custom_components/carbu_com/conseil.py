@@ -17,7 +17,7 @@ from . import advisor
 from .const import DOMAIN
 
 _LOGGER = logging.getLogger(DOMAIN)
-USER_AGENT = "HomeAssistant-carbu_com/13.1.1 (+https://github.com/Gaustar/carbu_com)"
+USER_AGENT = "HomeAssistant-carbu_com/13.1.2 (+https://github.com/Gaustar/carbu_com)"
 # Le SPF Économie publie entre 10 h et 12 h les jours ouvrables ; 0 h 05 pour le prix du jour.
 REFRESH_HOURS = (0, 11, 13, 16)
 
@@ -258,7 +258,7 @@ class TendanceSensor(_Base, SensorEntity):
     _attr_native_unit_of_measurement = "%"
 
     def __init__(self, coordinator):
-        super().__init__(coordinator, "tendance", "Tendance gasoil", "mdi:chart-line")
+        super().__init__(coordinator, "tendance", "Tendance diesel", "mdi:chart-line")
 
     @property
     def native_value(self):
@@ -321,7 +321,7 @@ class CourbeSensor(_Base, SensorEntity):
     _attr_native_unit_of_measurement = "%"
 
     def __init__(self, coordinator):
-        super().__init__(coordinator, "courbe", "Courbe gasoil", "mdi:chart-bell-curve-cumulative")
+        super().__init__(coordinator, "courbe", "Courbe diesel", "mdi:chart-bell-curve-cumulative")
 
     @property
     def native_value(self):

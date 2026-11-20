@@ -57,7 +57,7 @@ def test_near_change_and_far_changes():
     far_up = advisor.decide(mon, 2.0, None, _pred(1000.0, 1000.0, 1020.0))
     assert far_up["verdict"] == "Hausse possible jeudi 5/11, à confirmer", far_up
     far_down = _pred(1000.0, 1000.0, 980.0)
-    # baisse lointaine : jamais « attends » ; affichée seulement si le gasoil baisse aussi
+    # baisse lointaine : jamais « attends » ; affichée seulement si le diesel baisse aussi
     assert advisor.decide(mon, 2.0, None, far_down, {"cinq_jours": 2.0})["verdict"] == "Pas de prévision fiable"
     assert advisor.decide(mon, 2.0, None, far_down, None)["verdict"] == "Pas de prévision fiable"
     v = advisor.decide(mon, 2.0, None, far_down, {"cinq_jours": -3.1})
@@ -114,7 +114,7 @@ def test_parse_barometer():
 
 
 def test_barometer_estimates_next_announcement():
-    # 24/08 : le gasoil perd 5 % ; la baisse s'est bien déclenchée le 25/08 (nouveau prix le 26/08)
+    # 24/08 : le diesel perd 5 % ; la baisse s'est bien déclenchée le 25/08 (nouveau prix le 26/08)
     o = _outlook(date(2026, 8, 24))
     e = o["estimation"]
     assert o["declenche"] is None and e["annonce"] == date(2026, 8, 25) and e["sens"] == "baisse", e
@@ -145,7 +145,7 @@ def test_futures_curve():
     assert advisor.futures_symbols(date(2026, 11, 20))[-1] == ("2027-06", "HOM27.NYM")
     assert advisor.futures_symbols(date(2026, 12, 15))[0] == ("2027-01", "HOF27.NYM")
     c = advisor.futures_curve([("2026-12", 4.0), ("2027-01", None), ("2027-06", 3.48)])
-    assert c["variation_pct"] == -13.0 and "une baisse" in c["lecture"] and "-13,0 %" in c["lecture"], c
+    assert c["variation_pct"] == -13.0 and "une baisse" in c["lecture"] and "-13,0 %" in c["lecture"] and "déc. 2026 et juin 2027" in c["lecture"], c
     assert advisor.futures_curve([("2026-12", 4.0)]) is None
 
 

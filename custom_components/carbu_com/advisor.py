@@ -115,7 +115,7 @@ def parse_yahoo(text):
 
 
 def market_trend(ho, fx):
-    """Variation (%) du gasoil en € à la dernière séance et sur 5 séances."""
+    """Variation (%) du diesel en € à la dernière séance et sur 5 séances."""
     fx_by_day = dict(fx)
     euro = [(d, p / fx_by_day[d]) for d, p in ho if d in fx_by_day]
     if len(euro) < 6:
@@ -176,7 +176,7 @@ def _euro(ho, fx):
 
 
 def barometer_outlook(rows, ho=None, fx=None):
-    """Position de la cotation entre les seuils, et ce que la dernière séance du gasoil annonce pour la prochaine annonce."""
+    """Position de la cotation entre les seuils, et ce que la dernière séance du diesel annonce pour la prochaine annonce."""
     last = rows[-1]
     out = {"date": last["date"], "cif": last["cif"], "moyenne": last["moyenne"], "bas": last["bas"], "haut": last["haut"],
            "base": last["base"], "position": round(100 * (last["cif"] - last["bas"]) / (last["haut"] - last["bas"])),
@@ -212,6 +212,13 @@ def futures_symbols(today, count=7):
     return out
 
 
+MONTHS = ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."]
+
+
+def _month(ym):
+    return f"{MONTHS[int(ym[5:]) - 1]} {ym[:4]}"
+
+
 def futures_curve(points):
     """points = [(mois, prix $/gal)] : ce que le marché paie aujourd'hui pour livrer chaque mois."""
     points = [(m, p) for m, p in points if p]
@@ -221,7 +228,7 @@ def futures_curve(points):
     var = round(100 * (last[1] - first[1]) / first[1], 1)
     sens = "des prix à peu près stables" if abs(var) < 2 else ("une baisse" if var < 0 else "une hausse")
     return {"variation_pct": var, "mois": [{"mois": m, "prix_usd_gal": round(p, 4)} for m, p in points],
-            "lecture": f"Contrats à terme {var:+.1f} % entre {first[0]} et {last[0]} : le marché s'attend à {sens}."
+            "lecture": f"Contrats à terme {var:+.1f} % entre {_month(first[0])} et {_month(last[0])} : le marché s'attend à {sens}."
                        .replace(".", ",", 1)}
 
 
@@ -280,7 +287,7 @@ def decide(today, current, energia=None, prediction=None, trend=None, barometer=
         delta, when = est["variation"], day_name(est["changement"], today)
         return {**info(f"{est['sens'].capitalize()} probable {when}, à confirmer", "probable (marché)",
                        round(current + delta / 100, 3),
-                       f"Cotation estimée d'après la séance du gasoil du {est['seance_du'].day}/{est['seance_du'].month} "
+                       f"Cotation estimée d'après la séance du diesel du {est['seance_du'].day}/{est['seance_du'].month} "
                        f"({est['marche_pct']:+.1f} %) : avec la moyenne sur 7 jours, le seuil de {est['sens']} serait "
                        f"franchi et le prix changerait {when} (environ {'−' if delta < 0 else '+'}{_cents(delta)} c/L). "
                        f"Sur un an : juste 7 fois sur 10, jamais dans le mauvais sens.".replace(".", ",", 1)),
@@ -294,11 +301,11 @@ def decide(today, current, energia=None, prediction=None, trend=None, barometer=
                     "variation": delta, "date": step["date"]}
         if trend and trend["cinq_jours"] < 0:
             return {**info(f"Baisse possible {when}, à confirmer", "prévision lointaine", price,
-                            f"carbu.com prévoit −{_cents(delta)} c/L {when} et le gasoil baisse "
+                            f"carbu.com prévoit −{_cents(delta)} c/L {when} et le diesel baisse "
                             f"({_signed(trend['cinq_jours'])} % sur 5 séances)."),
                     "variation": delta, "date": step["date"]}
         return info("Pas de prévision fiable", "incertaine", current,
-                     f"carbu.com prévoit une baisse {when}, mais le gasoil ne baisse pas : "
+                     f"carbu.com prévoit une baisse {when}, mais le diesel ne baisse pas : "
                      "dans ce cas, une baisse annoncée aussi loin finit en hausse une fois sur trois.")
     note = " Un petit ajustement trimestriel (moins de 1 c/L) reste possible." if soon.day == 1 and soon.month in (1, 4, 7, 10) else ""
     if barometer and barometer["ecart_baisse"] > 0 and barometer["ecart_hausse"] > 0:
